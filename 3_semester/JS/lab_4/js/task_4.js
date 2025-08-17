@@ -7,6 +7,8 @@ function cashData(item)
         let result = MultipleValue(item);
         cache.set(item, result);
         console.log("Данные в кэш успешно добавлены");
+
+        return result;
     }
 
     console.log("Беру данные из кэша");
