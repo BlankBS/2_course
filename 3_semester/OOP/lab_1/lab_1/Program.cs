@@ -27,6 +27,7 @@ namespace lab_1
             double doubleValue = 3.1415956535;
 
             bool boolValue = true;
+            
             char charValue = 'x';
             string stringValue = "BlankBS";
 
@@ -43,28 +44,28 @@ namespace lab_1
             Console.WriteLine($"char: {charValue}");
             Console.WriteLine($"string: {stringValue}");
 
-            //Console.WriteLine("\nВведите значения переменных: ");
-            //Console.Write("Введите int: ");
-            //int iWrite = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nВведите значения переменных: ");
+            Console.Write("Введите int: ");
+            int iWrite = int.Parse(Console.ReadLine());
 
-            //Console.Write("Введите float: ");
-            //float fWrite = float.Parse(Console.ReadLine());
+            Console.Write("Введите float: ");
+            float fWrite = float.Parse(Console.ReadLine());
 
-            //Console.Write("Введите bool (true/false): ");
-            //bool bWrite = bool.Parse(Console.ReadLine());
+            Console.Write("Введите bool (true/false): ");
+            bool bWrite = bool.Parse(Console.ReadLine());
 
-            //Console.Write("Введите char: ");
-            //char cWrite = char.Parse(Console.ReadLine());
+            Console.Write("Введите char: ");
+            char cWrite = char.Parse(Console.ReadLine());
 
-            //Console.Write("Введите string: ");
-            //string sWrite = Console.ReadLine();
+            Console.Write("Введите string: ");
+            string sWrite = Console.ReadLine();
 
-            //Console.WriteLine("\nВведенные значения: ");
-            //Console.WriteLine($"int: {iWrite}");
-            //Console.WriteLine($"float: {fWrite}");
-            //Console.WriteLine($"bool: {bWrite}");
-            //Console.WriteLine($"char: {cWrite}");
-            //Console.WriteLine($"string: {sWrite}");
+            Console.WriteLine("\nВведенные значения: ");
+            Console.WriteLine($"int: {iWrite}");
+            Console.WriteLine($"float: {fWrite}");
+            Console.WriteLine($"bool: {bWrite}");
+            Console.WriteLine($"char: {cWrite}");
+            Console.WriteLine($"string: {sWrite}");
 
             // -----------------------------------------------------------------------------------
             FormatedOutput("Операции явного приведение (implicit conversion)");
@@ -156,8 +157,8 @@ namespace lab_1
             FormatedOutput("Присвоение var");
             // -----------------------------------------------------------------------------------
 
-            //var myvar = 111;
-            //myvar = "Hello";
+            var myvar = 111;
+            myvar = "Hello";
 
             // -----------------------------------------------------------------------------------
             FormatedOutput("Сравнивание строк");

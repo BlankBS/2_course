@@ -1,16 +1,20 @@
 ﻿#include <iostream>
 
+int moves = 1;
+
 void SolveTower(int N, int k, int i)
 {
 	if (N == 1)
 	{
-		std::cout << "Переместить диск 1 с " << i << " на " << k << " стержень\n";
+		std::cout << moves << ". Переместить диск 1 с " << i << " на " << k << " стержень\n";
+		moves++;
 		return;
 	}
 
 	int tmp = 6 - i - k;
 	SolveTower(N - 1, tmp, i);
-	std::cout << "Переместить диск " << N << " с " << i << " на " << k << " стержень\n";
+	std::cout << moves << ". Переместить диск " << N << " с " << i << " на " << k << " стержень\n";
+	moves++;
 	SolveTower(N - 1, k, tmp);
 }
 
