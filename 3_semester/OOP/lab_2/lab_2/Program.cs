@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Reflection.Emit;
-
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 public partial class StackDouble
 {
@@ -60,7 +55,7 @@ public partial class StackDouble
     public string Name
     {
         get => name;
-        private set => name = value;
+        set => name = value;
     }
 
     public int Capacity
@@ -168,9 +163,12 @@ public partial class StackDouble
             hash = hash * 23 + capacity.GetHashCode();
             hash = hash * 23 + top.GetHashCode();
 
-            for (int i = 0; i <= Math.Min(top, 2); i++)
+            if(elements != null && top >= 0)
             {
-                hash = hash * 23 + elements[i].GetHashCode();
+                for (int i = 0; i <= Math.Min(top, 2); i++)
+                {
+                    hash = hash * 23 + elements[i].GetHashCode();
+                }
             }
 
             return hash;
@@ -224,6 +222,62 @@ namespace lab_2
             stack2.Push(20.3);
             stack1.Name = "Измененное имя";
 
+
+            Console.WriteLine($"\nВерхний элемент stack1: {stack1.Peek()}");
+            Console.WriteLine($"Размер stack1: {stack1.Count}");
+
+            int opsCount = 0;
+            if (stack1.TryPop(out double result, ref opsCount))
+            {
+                Console.WriteLine($"Извлечен элемент: {result}, операций: {opsCount}");
+            }
+
+            var stack4 = stack3.Clone();
+            Console.WriteLine($"\nstack3 equal stack4: {stack3.Equals(stack4)}");
+
+            Console.WriteLine($"Тип stack1: {stack1.GetType()}");
+
+            StackDouble.PrintClassInfo();
+
+            Console.WriteLine("\n=== РАБОТА С МАССИВОМ ОБЪЕКТОВ ===");
+
+            StackDouble[] stacks =
+            {
+                new StackDouble("Стек A", 5.1, -3.2, 7.4),
+                new StackDouble("Стек B", 1.0, 2.0, 3.0),
+                new StackDouble("Стек C", -1.5, 4.8),
+                new StackDouble("Стек D", 9.9, 8.7, 7.6),
+                new StackDouble("Стек E", -0.5, 2.2, -3.3)
+            };
+
+            var minTopStack = stacks.OrderBy(s => s.IsEmpty ? double.MaxValue : s.Peek()).First();
+            var maxTopStack = stacks.OrderByDescending(s => s.IsEmpty ? double.MinValue : s.Peek()).First();
+
+            Console.WriteLine($"Стек с наименьшим верхним элементом: {minTopStack.Name}, элемент: {minTopStack.Peek()}");
+            Console.WriteLine($"Стек с наибольшим верхним элементом: {maxTopStack.Name}, элемент: {maxTopStack.Peek()}");
+
+            var stacksWithNegatives = stacks.Where(s => s.ContainsNegative()).ToArray();
+
+            Console.WriteLine("\nСтеки, содержащие отрицательные элементы: ");
+            foreach(var stack in stacksWithNegatives)
+            {
+                Console.WriteLine($"- {stack.Name}");
+            }
+
+            Console.WriteLine("\n=== АНОНИМНЫЙ ТИП ===");
+
+            var anonymousStack = new
+            {
+                Name = "Анонимный стек",
+                Elements = new double[] { 1.1, 2.2, 3.3 },
+                CreatedAt = DateTime.Now
+            };
+
+            Console.WriteLine($"Анонимный тип: {anonymousStack.Name}");
+            Console.WriteLine($"Элементы: {string.Join(", ", anonymousStack.Elements)}");
+            Console.WriteLine($"Создан: {anonymousStack.CreatedAt}");
+
+            Console.WriteLine($"\nТип анонимного объекта: {anonymousStack.GetType()}");
         }
     }
 }
