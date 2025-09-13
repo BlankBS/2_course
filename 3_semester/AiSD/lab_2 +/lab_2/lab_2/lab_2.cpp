@@ -34,7 +34,7 @@ void BFS(int start)
 
 		for (int i = 0; i < n; i++)
 		{
-			if (graph[view_cell] != 0 && !visited[i])
+			if (graph[view_cell][i] != 0 && !visited[i])
 			{
 				place.push(i);
 				visited[i] = true;
@@ -73,8 +73,8 @@ int main()
 	setlocale(LC_CTYPE, "rus");
 
 	std::cout << "Список ребер: \n";
-	int arr_1[11] = {1, 1, 2, 2, 3, 4, 4, 5, 6, 7, 9};
-	int arr_2[11] = {2, 5, 7, 8, 8, 6, 9, 6, 9, 8, 10};
+	int arr_1[11] = { 1, 1, 2, 2, 3, 4, 4, 5, 6, 7, 9 };
+	int arr_2[11] = { 2, 5, 7, 8, 8, 6, 9, 6, 9, 8, 10 };
 
 	for (int i = 0; i < 11; i++)
 	{
@@ -124,18 +124,35 @@ int main()
 	}
 
 	std::cout << "\nПоиск в ширину\n";
-	std::cout << "Начальная вершина: ";
 	int start_1;
-	std::cin >> start_1;
+	do
+	{
+		std::cout << "\nНачальная вершина: ";
+		std::cin >> start_1;
+		if (start_1 > n || start_1 < 1)
+		{
+			std::cout << "Введена некорректная вершина.\n";
+		}
+	} while (start_1 > n || start_1 < 1);
+
 	std::cout << "Посещение вершины: ";
 	BFS(start_1 - 1);
 
 	std::cout << "\nПоиск в глубину\n";
-	std::cout << "Начальную вершину: ";
 	int start_2;
-	std::cin >> start_2;
+	do
+	{
+		std::cout << "\nНачальная вершина: ";
+		std::cin >> start_2;
+		if (start_2 > n || start_2 < 1)
+		{
+			std::cout << "Введена некорректная вершина.\n";
+		}
+	} while (start_2 > n || start_2 < 1);
+
+	std::cout << "Посещение вершины: ";
 	DFS(start_2 - 1);
-	
+
 	delete[] visited;
 	return 0;
 }

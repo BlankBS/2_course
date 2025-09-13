@@ -57,7 +57,6 @@ namespace In
 
             if (c == '\n' || c == '\r')
             {
-                // Завершение строки
                 if (!error_in_current_line) {
                     //if (!first_line) out << "|";
                     out << current_line;
@@ -70,9 +69,8 @@ namespace In
                 error_in_current_line = false;
                 first_line = false;
 
-                // Пропускаем возможный \r после \n
                 if (c == '\r' && fin.peek() == '\n') {
-                    fin.get(c); // пропускаем \n
+                    fin.get(c);
                 }
             }
             else
@@ -81,7 +79,6 @@ namespace In
             }
         }
 
-        // Обработка последней строки
         if (!current_line.empty())
         {
             if (!error_in_current_line) {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 public partial class StackDouble
 {
@@ -23,6 +22,7 @@ public partial class StackDouble
         this.name = name;
         this.id = GetHashCode();
         objectCount++;
+        Console.WriteLine("\n123");
     }
 
     public StackDouble() : this("Unnamed Stack")
@@ -30,6 +30,7 @@ public partial class StackDouble
         elements = new double[DEFAULT_CAPACITY];
         capacity = DEFAULT_CAPACITY;
         top = -1;
+        Console.WriteLine("\n321");
     }
 
     public StackDouble(string name, int capacity) : this(name)
@@ -37,6 +38,7 @@ public partial class StackDouble
         this.capacity = capacity;
         elements = new double[capacity];
         top = -1;
+        Console.WriteLine("\n456");
     }
 
     public StackDouble(string name = "Default Stack", params double[] initialElements) : this(name)
@@ -49,6 +51,7 @@ public partial class StackDouble
         {
             Push(element);
         }
+        Console.WriteLine("\n777");
     }
 
     public int ID => id;
@@ -274,7 +277,7 @@ namespace lab_2
             };
 
             Console.WriteLine($"Анонимный тип: {anonymousStack.Name}");
-            Console.WriteLine($"Элементы: {string.Join(", ", anonymousStack.Elements)}");
+            Console.WriteLine($"Элементы: {string.Join("; ", anonymousStack.Elements)}");
             Console.WriteLine($"Создан: {anonymousStack.CreatedAt}");
 
             Console.WriteLine($"\nТип анонимного объекта: {anonymousStack.GetType()}");
