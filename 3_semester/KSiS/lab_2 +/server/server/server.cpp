@@ -56,16 +56,44 @@ int main()
 		std::string response;
 		if (receivedStr.length() > 7)
 		{
-			response = '{' + receivedStr + '}';
+			bool isOpened = false;
+			int open = 0, close = 0;
+
+			for (const char ch : receivedStr)
+			{
+				if (ch == '{')
+				{
+					open++;
+					isOpened = true;
+					response += ch;
+				}
+				else if (ch == '}')
+				{
+					close++;
+					isOpened = false;
+					response += ch;
+					// 1123456 {3456} {234567}
+				}
+				else if (isOpened)
+				{
+					response += ch;
+				}
+			}
+
+			if (open != close)
+			{
+				response = "Invalid string!";
+			}
 			std::cout << "Sending response: " << response << '\n';
 		}
 		else
 		{
-			response = receivedStr;
-			std::cout << "Received string length less then 7, sending back unchanged\n";
+			response = "Invalid string!";
+			std::cout << response << '\n';
 		}
 
 		sendto(s, response.c_str(), response.length() + 1, 0, (struct sockaddr*)&clientAddr, clientAddrSize);
+		std::cin.clear();
 	}
 
 	closesocket(s);

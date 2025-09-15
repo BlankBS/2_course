@@ -9,7 +9,7 @@
 
 int main()
 {
-    char buff[100];
+    char buff[200] = {0};
 
     WORD wVerisonRequested;
     WSADATA wsaData;
@@ -47,7 +47,7 @@ int main()
 
         sendto(clientSocket, input.c_str(), input.length() + 1, 0, (struct sockaddr*)&add, addLength);
 
-        memset(buff, 0, sizeof(buff));
+        //memset(buff, 0, sizeof(buff));
         int bytesReceived = recvfrom(clientSocket, buff, sizeof(buff) - 1, 0, (struct sockaddr*)&add, &addLength);
 
         if (bytesReceived == SOCKET_ERROR)
