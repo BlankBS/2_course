@@ -19,27 +19,29 @@ public class Production
     }
 }
 
-public class Developer
-{
-    public int Id { get; set; }
-    public string FullName { get; set; }
-    public string Department { get; set; }
-
-    public Developer(int id, string fullName, string department)
-    {
-        Id = id;
-        FullName = fullName;
-        Department = department;
-    }
-
-    public override string ToString()
-    {
-        return $"Developer [ID: {Id}, Name: {FullName}, Department: {Department}]";
-    }
-}
-
 public class Queue<T> where T : IComparable<T>
 {
+    
+
+    public class Developer
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Department { get; set; }
+
+        public Developer(int id, string fullName, string department)
+        {
+            Id = id;
+            FullName = fullName;
+            Department = department;
+        }
+
+        public override string ToString()
+        {
+            return $"Developer [ID: {Id}, Name: {FullName}, Department: {Department}]";
+        }
+    }
+
     private List<T> items;
 
     public Production ProductionInfo { get; set; }
@@ -209,13 +211,11 @@ public static class StatisticOperation
     {
         return queue.Count;
     }
-}
-public static class ExtensionMethods
-{    public static int IndexOfFirstDot(this string str)
+
+    public static int IndexOfFirstDot(this string str)
     {
         return str.IndexOf('.');
     }
-
     public static T LastElement<T>(this Queue<T> queue) where T : IComparable<T>
     {
         if (queue.Count == 0)
@@ -224,6 +224,22 @@ public static class ExtensionMethods
         return queue[queue.Count - 1];
     }
 }
+
+//public static class ExtensionMethods
+//{
+//    public static int IndexOfFirstDot(this string str)
+//    {
+//        return str.IndexOf('.');
+//    }
+
+//    public static T LastElement<T>(this Queue<T> queue) where T : IComparable<T>
+//    {
+//        if (queue.Count == 0)
+//            throw new InvalidOperationException("Queue is empty");
+
+//        return queue[queue.Count - 1];
+//    }
+//}
 
 class Program
 {

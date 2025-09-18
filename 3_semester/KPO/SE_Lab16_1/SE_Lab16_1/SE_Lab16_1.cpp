@@ -27,6 +27,8 @@ int _tmain(int argc, _TCHAR* argv[]) {
         "ascslbbbj",
         "ascskbj",
         "abcbkb",
+        "abocbkbc",
+        "abocbkbb",
         "abocbkbj"
     };
 
