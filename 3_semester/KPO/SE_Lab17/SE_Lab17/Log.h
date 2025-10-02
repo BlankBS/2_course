@@ -1,12 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include <fstream>
-#include "In.h"
-#include "Parm.h"
-#include "Error.h"
-#include "LT.h"
-#include "IT.h"
-
 
 namespace Log
 {
@@ -18,7 +11,7 @@ namespace Log
 
 	static const LOG INITLOG{ L"", NULL };
 	LOG getlog(wchar_t logfile[]);
-	void WriteLine(LOG log, char* c, ...); 
+	void WriteLine(LOG log, char* c, ...);
 	void WriteLine(LOG log, wchar_t* c, ...);
 	void WriteLog(LOG log);
 	void WriteParm(LOG log, Parm::PARM parm);
@@ -27,5 +20,4 @@ namespace Log
 	void WriteLexTable(LOG log, LT::LexTable& lextable);
 	void WriteIdTable(LOG log, IT::IdTable& idtable);
 	void Close(LOG log);
-};
-
+}

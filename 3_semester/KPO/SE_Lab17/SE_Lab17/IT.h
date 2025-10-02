@@ -6,6 +6,8 @@
 #define TI_NULLIDX		0xffffffff
 #define TI_STR_MAXSIZE  255
 
+#include <string>
+
 namespace IT
 {
 	enum IDDATATYPE { INT = 1, STR = 2 };

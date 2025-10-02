@@ -37,8 +37,8 @@ namespace Out {
 	void WriteToError(OUT out, Error::ERROR error)
 	{
 		if (out.stream) {
-			*out.stream << "Ошибка " << error.id << ": " << error.message; 
-			if (error.inext.line != -1) { 
+			*out.stream << "Ошибка " << error.id << ": " << error.message;
+			if (error.inext.line != -1) {
 				*out.stream << ", строка " << error.inext.line << ", позиция " << error.inext.col << '\n';
 			}
 			else {

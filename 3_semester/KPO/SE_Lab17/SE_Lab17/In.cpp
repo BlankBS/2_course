@@ -69,7 +69,7 @@ IN In::getin(wchar_t infile[])
 			break;
 		}
 		else {
-			if (i == 0 && in.text[i]==' ')
+			if (i == 0 && in.text[i] == ' ')
 			{
 				int k = 0;
 				while (in.text[k] == ' ')

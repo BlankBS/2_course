@@ -14,6 +14,11 @@ int graph[size][size] =
 	{0, 0, 7, 0, 8, 0, 9, 0}
 };
 
+void Print(int (&graph)[size][size])
+{
+
+}
+
 void SolvePrima()
 {
 
@@ -26,11 +31,31 @@ void SolvePrima()
 	}
 
 	int num;
-	do
+	while(true)
 	{
 		std::cout << "\nНачальная вершина: ";
 		std::cin >> num;
-	} while (num < 1 || num > 8);
+
+		if (!std::cin)
+		{
+			system("cls");
+			std::cout << "Ввода больше нет :(\n";
+			return;
+		}
+		std::cout << '\n';
+
+		if (std::cin.fail() || (num < 1 && num > 8))
+		{
+			system("cls");
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Неправильные данные. Повторите ввод.\n";
+		}
+		else
+		{
+			break;
+		}
+	}
 
 	visited[num - 1] = true;
 
@@ -56,7 +81,7 @@ void SolvePrima()
 					}
 				}
 			}
-		}
+		}	
 
 		if (a != -1 && b != -1)
 		{
@@ -133,15 +158,31 @@ int main()
 {
 	setlocale(LC_CTYPE, "rus");
 
-	std::cout << "Выберите\n1 - Прима\n2 - Крускала\nВыбор: ";
 	int choose;
-	std::cin >> choose;
-	switch (choose)
+	while (true)
 	{
-	case(1): SolvePrima(); break;
-	case(2): SolveKruskal(); break;
-	default: std::cout << "Неверный выбор.";
-		break;
+		std::cout << "Выберите\n1 - Прима\n2 - Крускала\nВыбор: ";
+		std::cin >> choose;
+		if (!std::cin)
+		{
+			system("cls");
+			std::cout << "Ввода больше нет :(\n";
+			return 0;
+		}
+		std::cout << '\n';
+
+		if (std::cin.fail() || (choose != 1 && choose != 2))
+		{
+			system("cls");
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Неправильные данные. Повторите ввод.\n";
+		}
+		else
+		{
+			choose == 1 ? SolvePrima() : SolveKruskal();
+			break;
+		}
 	}
 
 	return 0;

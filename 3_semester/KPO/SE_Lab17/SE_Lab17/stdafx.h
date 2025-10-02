@@ -1,5 +1,7 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
+using namespace std;
+
 #include <iostream>
 #include <typeinfo>
 #include <string>
@@ -13,13 +15,13 @@
 #include <ctime>
 #include <string.h>
 #include <mbstring.h>
-#include "In.h"
+
 #include "Error.h"
 #include "Parm.h"
+#include "In.h"
+#include "LT.h"
+#include "IT.h"
 #include "Log.h"
 #include "Out.h"
 #include "FST.h"
-#include "IT.h"
-#include "LT.h"
 #include "Lexer.h"
-using namespace std;

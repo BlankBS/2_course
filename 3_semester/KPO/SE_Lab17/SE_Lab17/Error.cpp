@@ -1,49 +1,49 @@
 #include "Error.h"
 namespace Error {
-    ERROR errors[ERROR_MAX_ENTRY]{ 
-        ERROR_ENTRY(0, "Недопустимый код ошибки"),
-        ERROR_ENTRY(1, "Системный сбой"),
-        ERROR_ENTRY_NODEF(2),ERROR_ENTRY_NODEF(3),ERROR_ENTRY_NODEF(4),ERROR_ENTRY_NODEF(5),
-        ERROR_ENTRY_NODEF(6),ERROR_ENTRY_NODEF(7),ERROR_ENTRY_NODEF(8),ERROR_ENTRY_NODEF(9),
-        ERROR_ENTRY_NODEF10(10),ERROR_ENTRY_NODEF10(20),ERROR_ENTRY_NODEF10(30),ERROR_ENTRY_NODEF10(40),
-        ERROR_ENTRY_NODEF10(50),ERROR_ENTRY_NODEF10(60),ERROR_ENTRY_NODEF10(70),ERROR_ENTRY_NODEF10(80),
-        ERROR_ENTRY_NODEF10(90),
-        ERROR_ENTRY(100, "Параметр -in должен быть задан"),
-        ERROR_ENTRY_NODEF(101), ERROR_ENTRY_NODEF(102),ERROR_ENTRY_NODEF(103),
-        ERROR_ENTRY(104, "Превышена длина входного параметра"),
-        ERROR_ENTRY_NODEF(105),ERROR_ENTRY_NODEF(106),ERROR_ENTRY_NODEF(107),ERROR_ENTRY_NODEF(108),
-        ERROR_ENTRY_NODEF(109),
-        ERROR_ENTRY(110, "Ошибка открытия файла с исходным кодом (-in)"),
-        ERROR_ENTRY(111, "Недопустимый символ в исходном файле (-in)"),
-        ERROR_ENTRY(112, "Ошибка при создании файла протокола(-log)"),
-        ERROR_ENTRY(113, "Ошибка при создании таблицы лексем. Превышена ёмкость таблицы лексем"),
-        ERROR_ENTRY(114, "Ошибка при добавлении лексемы в таблицу. Таблица лексем заполнена"),
-        ERROR_ENTRY(115, "Ошибка при получении лексемы из таблицы. Недопустимый номер лексемы"),
-        ERROR_ENTRY(116, "Ошибка при создании таблицы идентификаторов. Превышена ёмкость таблицы идентификаторов"),
-        ERROR_ENTRY(117, "Ошибка при добавлении идентификатора в таблицу. Таблица идентификаторов заполнена"),
-        ERROR_ENTRY(118, "Ошибка при получении записи из таблицы идентификаторов. Недопустимый номер идентификатора"),
-        ERROR_ENTRY(119, "Превышено название идентификатора"), 
-        ERROR_ENTRY(120, "Не удалось определить лексему"),
-        ERROR_ENTRY(121, "Неопределенный тип данных"),
-        ERROR_ENTRY_NODEF(130),ERROR_ENTRY_NODEF(140),ERROR_ENTRY_NODEF(150),ERROR_ENTRY_NODEF(160),
-        ERROR_ENTRY_NODEF(170),ERROR_ENTRY_NODEF(180),ERROR_ENTRY_NODEF(190),ERROR_ENTRY_NODEF(200),
-        ERROR_ENTRY_NODEF(300),ERROR_ENTRY_NODEF(400),ERROR_ENTRY_NODEF(500),ERROR_ENTRY_NODEF(600),
-        ERROR_ENTRY_NODEF(700),ERROR_ENTRY_NODEF(800),ERROR_ENTRY_NODEF(900),
-    };
+	ERROR errors[ERROR_MAX_ENTRY]{
+		ERROR_ENTRY(0, "Недопустимый код ошибки"),
+		ERROR_ENTRY(1, "Системный сбой"),
+		ERROR_ENTRY_NODEF(2),ERROR_ENTRY_NODEF(3),ERROR_ENTRY_NODEF(4),ERROR_ENTRY_NODEF(5),
+		ERROR_ENTRY_NODEF(6),ERROR_ENTRY_NODEF(7),ERROR_ENTRY_NODEF(8),ERROR_ENTRY_NODEF(9),
+		ERROR_ENTRY_NODEF10(10),ERROR_ENTRY_NODEF10(20),ERROR_ENTRY_NODEF10(30),ERROR_ENTRY_NODEF10(40),
+		ERROR_ENTRY_NODEF10(50),ERROR_ENTRY_NODEF10(60),ERROR_ENTRY_NODEF10(70),ERROR_ENTRY_NODEF10(80),
+		ERROR_ENTRY_NODEF10(90),
+		ERROR_ENTRY(100, "Параметр -in должен быть задан"),
+		ERROR_ENTRY_NODEF(101), ERROR_ENTRY_NODEF(102),ERROR_ENTRY_NODEF(103),
+		ERROR_ENTRY(104, "Превышена длина входного параметра"),
+		ERROR_ENTRY_NODEF(105),ERROR_ENTRY_NODEF(106),ERROR_ENTRY_NODEF(107),ERROR_ENTRY_NODEF(108),
+		ERROR_ENTRY_NODEF(109),
+		ERROR_ENTRY(110, "Ошибка открытия файла с исходным кодом (-in)"),
+		ERROR_ENTRY(111, "Недопустимый символ в исходном файле (-in)"),
+		ERROR_ENTRY(112, "Ошибка при создании файла протокола(-log)"),
+		ERROR_ENTRY(113, "Ошибка при создании таблицы лексем. Превышена ёмкость таблицы лексем"),
+		ERROR_ENTRY(114, "Ошибка при добавлении лексемы в таблицу. Таблица лексем заполнена"),
+		ERROR_ENTRY(115, "Ошибка при получении лексемы из таблицы. Недопустимый номер лексемы"),
+		ERROR_ENTRY(116, "Ошибка при создании таблицы идентификаторов. Превышена ёмкость таблицы идентификаторов"),
+		ERROR_ENTRY(117, "Ошибка при добавлении идентификатора в таблицу. Таблица идентификаторов заполнена"),
+		ERROR_ENTRY(118, "Ошибка при получении записи из таблицы идентификаторов. Недопустимый номер идентификатора"),
+		ERROR_ENTRY(119, "Превышено название идентификатора"),
+		ERROR_ENTRY(120, "Не удалось определить лексему"),
+		ERROR_ENTRY(121, "Неопределенный тип данных"),
+		ERROR_ENTRY_NODEF(130),ERROR_ENTRY_NODEF(140),ERROR_ENTRY_NODEF(150),ERROR_ENTRY_NODEF(160),
+		ERROR_ENTRY_NODEF(170),ERROR_ENTRY_NODEF(180),ERROR_ENTRY_NODEF(190),ERROR_ENTRY_NODEF(200),
+		ERROR_ENTRY_NODEF(300),ERROR_ENTRY_NODEF(400),ERROR_ENTRY_NODEF(500),ERROR_ENTRY_NODEF(600),
+		ERROR_ENTRY_NODEF(700),ERROR_ENTRY_NODEF(800),ERROR_ENTRY_NODEF(900),
+	};
 
-    ERROR geterror(int id) {
-        if (id > 0 && id < ERROR_MAX_ENTRY) {
-            return errors[id];
-        }
-        return errors[0];
-    }
+	ERROR geterror(int id) {
+		if (id > 0 && id < ERROR_MAX_ENTRY) {
+			return errors[id];
+		}
+		return errors[0];
+	}
 
-    ERROR geterrorin(int id, int line = -1, int col = -1) { 
-        if (id > 0 && id < ERROR_MAX_ENTRY) {
-            errors[id].inext.line = line;
-            errors[id].inext.col = col;
-            return errors[id];
-        }
-        return errors[0];
-    }
+	ERROR geterrorin(int id, int line = -1, int col = -1) {
+		if (id > 0 && id < ERROR_MAX_ENTRY) {
+			errors[id].inext.line = line;
+			errors[id].inext.col = col;
+			return errors[id];
+		}
+		return errors[0];
+	}
 };

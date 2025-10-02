@@ -25,22 +25,22 @@
 
 namespace LT
 {
-    struct Entry
-    {
-        char lexema;
-        int sn;
-        int idxTi = LT_TI_NULLIDX;
-    };
+	struct Entry
+	{
+		char lexema;
+		int sn;
+		int idxTi = LT_TI_NULLIDX;
+	};
 
-    struct LexTable
-    {
-        int maxsize;
-        int size;
-        Entry* table;
-    };
+	struct LexTable
+	{
+		int maxsize;
+		int size;
+		Entry* table;
+	};
 
-    LexTable Create(int size);
-    void Add(LexTable& lextable, Entry entry);
-    Entry GetEntry(LexTable& lextable, int n);
-    void Delete(LexTable& lextable);
+	LexTable Create(int size);
+	void Add(LexTable& lextable, Entry entry);
+	Entry GetEntry(LexTable& lextable, int n);
+	void Delete(LexTable& lextable);
 };

@@ -1,4 +1,4 @@
-#include"stdafx.h"
+ï»¿#include"stdafx.h"
 #include "Error.h"
 #include "Parm.h"
 #include "Log.h"
@@ -8,63 +8,63 @@
 
 int _tmain(int argc, _TCHAR* argv[]) {
 
-    setlocale(LC_ALL, "RU");
+	setlocale(LC_ALL, "RU");
 
-    cout << "---- òåñò Parm::getparm ----" << endl << endl;
-    Parm::PARM parm;
-    Log::LOG log = Log::INITLOG;
-    Out::OUT out = Out::INIOUT;
+	cout << "---- Ñ‚ÐµÑÑ‚ Parm::getparm ----" << endl << endl;
+	Parm::PARM parm;
+	Log::LOG log = Log::INITLOG;
+	Out::OUT out = Out::INIOUT;
 
-    try {
-        parm = Parm::getparm(argc, argv);
-        wcout << "-in:" << parm.in << ", -out:" << parm.out << ", -log:" << parm.log << endl << endl;
-        log = Log::getlog(parm.log);
-        Log::WriteLog(log);
-        Log::WriteParm(log, parm);
-    }
-    catch (Error::ERROR e) {
-        cout << "Îøèáêà " << e.id << ": " << e.message << endl << endl;
-    }
+	try {
+		parm = Parm::getparm(argc, argv);
+		wcout << "-in:" << parm.in << ", -out:" << parm.out << ", -log:" << parm.log << endl << endl;
+		log = Log::getlog(parm.log);
+		Log::WriteLog(log);
+		Log::WriteParm(log, parm);
+	}
+	catch (Error::ERROR e) {
+		cout << "ÐžÑˆÐ¸Ð±ÐºÐ° " << e.id << ": " << e.message << endl << endl;
+	}
 
-    cout << "---- òåñò In::getin ----" << endl << endl;
-    try {
-        parm = Parm::getparm(argc, argv);
-        In::IN in = In::getin(parm.in);
-        cout << in.text << endl;
-        cout << "Âñåãî ñèìâîëîâ: " << in.size << endl;
-        cout << "Âñåãî ñòðîê: " << in.lines << endl;
-        cout << "Ïðîïóùåíî: " << in.ignor << endl;
-        cout << "Êîëè÷åñòâî óäàëåííûõ ïðîáåëîâ: " << in.countSpaces << endl;
-        Log::WriteIn(log, in);
-    }
-    catch (Error::ERROR e) {
-        cout << "Îøèáêà " << e.id << ": " << e.message << endl << endl;
-        cout << "Ñòðîêà " << e.inext.line << " ïîçèöèÿ " << e.inext.col << endl << endl;
-        log = Log::getlog(parm.log);
-        Log::WriteError(log, e);
-        out = Out::getout(parm.out);
-        Out::WriteToError(out, e);
+	cout << "---- Ñ‚ÐµÑÑ‚ In::getin ----" << endl << endl;
+	try {
+		parm = Parm::getparm(argc, argv);
+		In::IN in = In::getin(parm.in);
+		cout << in.text << endl;
+		cout << "Ð’ÑÐµÐ³Ð¾ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð²: " << in.size << endl;
+		cout << "Ð’ÑÐµÐ³Ð¾ ÑÑ‚Ñ€Ð¾Ðº: " << in.lines << endl;
+		cout << "ÐŸÑ€Ð¾Ð¿ÑƒÑ‰ÐµÐ½Ð¾: " << in.ignor << endl;
+		cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑƒÐ´Ð°Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð¿Ñ€Ð¾Ð±ÐµÐ»Ð¾Ð²: " << in.countSpaces << endl;
+		Log::WriteIn(log, in);
+	}
+	catch (Error::ERROR e) {
+		cout << "ÐžÑˆÐ¸Ð±ÐºÐ° " << e.id << ": " << e.message << endl << endl;
+		cout << "Ð¡Ñ‚Ñ€Ð¾ÐºÐ° " << e.inext.line << " Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ " << e.inext.col << endl << endl;
+		log = Log::getlog(parm.log);
+		Log::WriteError(log, e);
+		out = Out::getout(parm.out);
+		Out::WriteToError(out, e);
 
-    }
-    try {
-        parm = Parm::getparm(argc, argv);
-        In::IN in = In::getin(parm.in);
-        LT::LexTable lextab = LT::Create(LT_MAXSIZE - 1);
-        IT::IdTable idtab = IT::Create(TI_MAXSIZE - 1);
-        Lexer::Run(lextab, idtab, in);
-        Log::WriteLexTable(log, lextab);
-        Log::WriteIdTable(log, idtab);
+	}
+	try {
+		parm = Parm::getparm(argc, argv);
+		In::IN in = In::getin(parm.in);
+		LT::LexTable lextab = LT::Create(LT_MAXSIZE - 1);
+		IT::IdTable idtab = IT::Create(TI_MAXSIZE - 1);
+		Lexer::Run(lextab, idtab, in);
+		Log::WriteLexTable(log, lextab);
+		Log::WriteIdTable(log, idtab);
 
-        out = Out::getout(parm.out);
-        Out::WriteToFile(out, in);
-    }
-    catch (Error::ERROR e)
-    {
-        cout << "Îøèáêà " << e.id << ": " << e.message << endl << endl;
-        Log::WriteError(log, e);
-        out = Out::getout(parm.out);
-        Out::WriteToError(out, e);
-    }
-    system("pause");
-    return 0;
+		out = Out::getout(parm.out);
+		Out::WriteToFile(out, in);
+	}
+	catch (Error::ERROR e)
+	{
+		cout << "ÐžÑˆÐ¸Ð±ÐºÐ° " << e.id << ": " << e.message << endl << endl;
+		Log::WriteError(log, e);
+		out = Out::getout(parm.out);
+		Out::WriteToError(out, e);
+	}
+	system("pause");
+	return 0;
 }

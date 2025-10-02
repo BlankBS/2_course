@@ -1,8 +1,9 @@
 #pragma once
 #include "LT.h"
 #include "IT.h"
+#include "In.h"
 
 namespace Lexer
 {
-    void Run(LT::LexTable& lextable, IT::IdTable& idtable, In::IN in);
+	void Run(LT::LexTable& lextable, IT::IdTable& idtable, In::IN in);
 }

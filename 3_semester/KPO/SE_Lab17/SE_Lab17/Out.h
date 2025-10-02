@@ -1,7 +1,7 @@
 #pragma once
+
 #include <fstream>
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <tchar.h>
 #include <ctime>
@@ -11,16 +11,17 @@
 #include "Log.h"
 #include "Parm.h"
 
-namespace Out 
+namespace Out
 {
-    struct OUT {
-        wchar_t outfile[PARM_MAX_SIZE];
-        std::ofstream* stream;
-    };
+	struct OUT
+	{
+		wchar_t outfile[PARM_MAX_SIZE];
+		std::ofstream* stream;
+	};
 
-    static const OUT INIOUT{ L"", NULL };
-    OUT getout(wchar_t outfile[]);
-    void WriteToFile(OUT out, In::IN in);
-    void WriteToError(OUT out, Error::ERROR error);
-    void CloseFile(OUT out);
+	static const OUT INIOUT{ L"", NULL };
+	OUT getout(wchar_t outfile[]);
+	void WriteToFile(OUT out, In::IN in);
+	void WriteToError(OUT OUT, Error::ERROR error);
+	void CloseFile(OUT out);
 }

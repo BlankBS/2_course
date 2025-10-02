@@ -16,19 +16,16 @@
 
 namespace Error
 {
-	struct ERROR
-	{
-		int id;
-		char message[ERROR_MAXSIZE_MESSAGE];
-		struct IN
-		{
-			short line;
-			short col;
-		} inext;
-	};
-	ERROR geterror(int id);
-	ERROR geterrorin(int id, int line, int col);
-
+    struct ERROR
+    {
+        int id;
+        char message[ERROR_MAXSIZE_MESSAGE];
+        struct IN
+        {
+            short line;
+            short col;
+        } inext;
+    };
+    ERROR geterror(int id);
+    ERROR geterrorin(int id, int line, int col);
 }
-
-
