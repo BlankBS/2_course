@@ -1,0 +1,6 @@
+Listing D:\BSTU\2_course\3_semester\OOP\Lab12:
+D:\BSTU\2_course\3_semester\OOP\Lab12\.vs
+D:\BSTU\2_course\3_semester\OOP\Lab12\Lab12
+D:\BSTU\2_course\3_semester\OOP\Lab12\Lab12.sln
+D:\BSTU\2_course\3_semester\OOP\Lab12\packages
+D:\BSTU\2_course\3_semester\OOP\Lab12\test.txt
