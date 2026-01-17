@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task_1</title>
+    <link rel = "stylesheet" href = "../css/style.css">
+</head>
+<body> 
+    <h1>Список дел</h1>
+
+    <div>
+        <input type = "text" id = "taskName" placeholder="Введите название задачи">
+        <button class = "addButton" onclick="AddTask()">Добавить</button>
+    </div>
+
+    <div class = "filterButtons">
+        <button class = "filterButton" onclick = "FilterTasks('all')">Показать все</button>
+        <button class = "filterButton" onclick = "FilterTasks('completed')">Показать выполненные</button>
+        <button class = "filterButton" onclick = "FilterTasks('not_completed')">Показать не выполненные</button>
+    </div>
+
+    <ul id = "taskList"></ul>
+
+    <script src = "../js/task_1.js"></script>
+</body>
+</html>
