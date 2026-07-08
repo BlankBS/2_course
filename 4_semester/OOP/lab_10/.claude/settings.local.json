@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"D:\\\\BSTU\\\\2_course\\\\4_semester\\\\OOP\\\\lab_10\\\\lab_4-5\" -Recurse | Where-Object { $_.Extension -eq \".cs\" } | ForEach-Object { $_.FullName })"
+    ]
+  }
+}

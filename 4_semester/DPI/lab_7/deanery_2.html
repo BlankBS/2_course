@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Registry: Students</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px;
+            padding-bottom: 90px;
+        }
+
+        header {
+            padding: 20px 16px 10px;
+        }
+
+        .title { font-size: 20px; font-weight: 800; }
+        .stats { font-size: 12px; color: #888; margin-top: 4px; }
+
+        /* Горизонтальный выбор курса */
+        .course-tabs {
+            display: flex;
+            overflow-x: auto;
+            padding: 16px;
+            gap: 8px;
+            -ms-overflow-style: none; 
+            scrollbar-width: none;
+        }
+        .course-tabs::-webkit-scrollbar { display: none; }
+
+        .tab {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            border: 1px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+        }
+        .tab-active { background: #000; color: #FFF; border-color: #000; }
+
+        /* Сетка групп (2 колонки) */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #BBB;
+            text-transform: uppercase;
+            padding: 0 16px;
+            margin-bottom: 12px;
+        }
+
+        .groups-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 16px 24px;
+        }
+
+        .group-card {
+            background: #FAFAFA;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .group-name { font-size: 14px; font-weight: 800; display: block; }
+        .student-count { font-size: 11px; color: #999; margin-top: 4px; }
+        .group-active { border: 2px solid #000; background: #FFF; }
+
+        /* Список студентов (карточки) */
+        .students-list { padding: 0 16px; }
+        
+        .search-bar {
+            width: 100%;
+            height: 44px;
+            background: #F5F5F5;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            box-sizing: border-box;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .student-card {
+            background: #FFF;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-main-info { flex-grow: 1; }
+        .student-name { font-size: 14px; font-weight: 700; display: block; }
+        .student-id { font-size: 11px; color: #AAA; margin-top: 2px; }
+
+        .student-metrics {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .metric { font-size: 11px; color: #666; }
+        .metric b { color: #000; }
+
+        .btn-profile {
+            background: #F5F5F5;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Таб бар */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; }
+        .tab-active { color: #000; font-weight: 700; }
+        .tab-icon { width: 22px; height: 22px; background: #EEE; border-radius: 5px; margin-bottom: 4px; }
+        .tab-active .tab-icon { background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title">Реестр студентов</div>
+        <div class="stats">Всего на факультете: 1,240</div>
+    </header>
+
+    <!-- Выбор курса -->
+    <div class="course-tabs">
+        <div class="tab">1 Курс</div>
+        <div class="tab tab-active">2 Курс</div>
+        <div class="tab">3 Курс</div>
+        <div class="tab">4 Курс</div>
+    </div>
+
+    <!-- Группы курса -->
+    <div class="section-label">Группы курса</div>
+    <div class="groups-grid">
+        <div class="group-card group-active">
+            <span class="group-name">1 группа</span>
+            <span class="student-count">30 студентов</span>
+        </div>
+        <div class="group-card">
+            <span class="group-name">2 группа</span>
+            <span class="student-count">29 студентов</span>
+        </div>
+        <div class="group-card">
+            <span class="group-name">3 группа</span>
+            <span class="student-count">28 студентов</span>
+        </div>
+        <div class="group-card">
+            <span class="group-name">4 группа</span>
+            <span class="student-count">21 студент</span>
+        </div>
+    </div>
+
+    <!-- Список студентов -->
+    <div class="students-list">
+        <div class="section-label" style="padding: 0; margin-bottom: 12px;">Студенты группы 2-1</div>
+        <div class="search-bar">Поиск по ФИО...</div>
+
+        <!-- Студент 1 -->
+        <div class="student-card">
+            <div class="student-main-info">
+                <span class="student-name">Иванов И. И.</span>
+                <span class="student-id">ID: 111111111</span>
+                <div class="student-metrics">
+                    <span class="metric">Балл: <b>9.6</b></span>
+                    <span class="metric">Пропуски: <b>2ч.</b></span>
+                </div>
+            </div>
+            <button class="btn-profile">Профиль</button>
+        </div>
+
+        <!-- Студент 2 -->
+        <div class="student-card">
+            <div class="student-main-info">
+                <span class="student-name">Андреев А. А.</span>
+                <span class="student-id">ID: 222222222</span>
+                <div class="student-metrics">
+                    <span class="metric">Балл: <b>9.6</b></span>
+                    <span class="metric">Пропуски: <b>2ч.</b></span>
+                </div>
+            </div>
+            <button class="btn-profile">Профиль</button>
+        </div>
+    </div>
+
+    <nav class="tab-bar">
+        <div class="tab-item"><div class="tab-icon"></div>Главная</div>
+        <div class="tab-item tab-active"><div class="tab-icon"></div>Группы</div>
+        <div class="tab-item"><div class="tab-icon"></div>Заявки</div>
+    </nav>
+
+</body>
+</html>

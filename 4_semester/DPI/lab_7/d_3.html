@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Dean: Student Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px;
+            padding-bottom: 100px;
+        }
+
+        header {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .btn-back {
+            padding: 6px 12px;
+            background: #E0E0E0;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .student-main-card {
+            padding: 24px 16px;
+            text-align: center;
+            background: #FAFAFA;
+        }
+
+        .photo-placeholder {
+            width: 100px;
+            height: 125px;
+            background: #EEE;
+            border: 1px dashed #CCC;
+            margin: 0 auto 16px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px; color: #999;
+        }
+
+        .name { font-size: 20px; font-weight: 800; line-height: 1.2; }
+        
+        .tags { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+        .tag { font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 4px; border: 1px solid #DDD; text-transform: uppercase; }
+
+        /* Академический статус */
+        .status-grid {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 16px;
+            gap: 8px;
+        }
+        .status-item {
+            flex: 1;
+            background: #FFF;
+            border: 1px solid #EEE;
+            padding: 12px 4px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .status-val { font-size: 18px; font-weight: 800; display: block; }
+        .status-lab { font-size: 9px; color: #AAA; text-transform: uppercase; margin-top: 4px; display: block; }
+
+        /* Секции данных */
+        .info-section { padding: 0 16px 24px; }
+        .section-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: block; border-bottom: 1.5px solid #F0F0F0; padding-bottom: 8px; }
+        
+        .info-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; }
+        .info-label { color: #AAA; font-size: 11px; }
+
+        /* История и дисциплина */
+        .list-card { background: #FAFAFA; padding: 12px; border-radius: 10px; margin-bottom: 8px; }
+        .list-text { font-size: 12px; font-weight: 600; display: block; }
+        .list-meta { font-size: 10px; color: #AAA; margin-top: 4px; display: flex; justify-content: space-between; }
+        .badge-ok { color: #2D5A2D; font-weight: 800; }
+        .badge-err { color: #C00; font-weight: 800; }
+
+        /* Кнопки действий */
+        .actions-container { padding: 0 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+        .btn-action { height: 48px; border-radius: 10px; border: 1.5px solid #000; font-weight: 700; font-size: 13px; background: #FFF; }
+        .btn-primary { background: #000; color: #FFF; }
+        .btn-disabled { border-color: #EEE; color: #CCC; }
+
+        /* Таб бар */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; }
+        .tab-active { color: #000; font-weight: 700; }
+        .tab-icon { width: 22px; height: 22px; background: #EEE; border-radius: 5px; margin-bottom: 4px; }
+        .tab-active .tab-icon { background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="btn-back">Назад</div>
+        <div style="font-weight: 700; font-size: 14px;">Профиль студента</div>
+    </header>
+
+    <div class="student-main-card">
+        <div class="photo-placeholder">ФОТО 3x4</div>
+        <div class="name">Сикорский А. А.</div>
+        <div class="tags">
+            <span class="tag">Очная форма</span>
+            <span class="tag">Платно</span>
+        </div>
+    </div>
+
+    <!-- Статус -->
+    <div class="status-grid">
+        <div class="status-item"><span class="status-val">9.82</span><span class="status-lab">Средний балл</span></div>
+        <div class="status-item"><span class="status-val">2</span><span class="status-lab">Пропуски</span></div>
+        <div class="status-item"><span class="status-val">0</span><span class="status-lab">Долги</span></div>
+    </div>
+
+    <!-- Личные данные -->
+    <div class="info-section">
+        <span class="section-title">Личная информация</span>
+        <div class="info-row"><span class="info-label">ID билета:</span> <b>111111111</b></div>
+        <div class="info-row"><span class="info-label">Дата рождения:</span> <b>17.04.2007 (19 лет)</b></div>
+        <div class="info-row"><span class="info-label">Телефон:</span> <b>+375 00 000-00-00</b></div>
+        <div class="info-row"><span class="info-label">Email:</span> <b>sikorsky.a@gmail.com</b></div>
+    </div>
+
+    <!-- История заявок -->
+    <div class="info-section">
+        <span class="section-title">История заявок</span>
+        <div class="list-card">
+            <span class="list-text">Справка об обучении (родителям)</span>
+            <div class="list-meta">10.03.2026 <span class="badge-ok">ВЫДАНО</span></div>
+        </div>
+        <div class="list-card">
+            <span class="list-text">Заявление на академ. отпуск</span>
+            <div class="list-meta">15.02.2026 <span class="badge-err">ОТКЛОНЕНО</span></div>
+        </div>
+    </div>
+
+    <!-- Дисциплина -->
+    <div class="info-section">
+        <span class="section-title">Дисциплинарный учет</span>
+        <div style="font-size: 12px; color: #AAA; text-align: center; padding: 10px;">Записи отсутствуют</div>
+    </div>
+
+    <!-- Действия -->
+    <div class="actions-container">
+        <button class="btn-action">Редактировать профиль</button>
+        <button class="btn-action">Выписать выговор</button>
+        <button class="btn-action btn-primary">Сформировать приказ</button>
+        <button class="btn-action btn-disabled">Архивировать дело</button>
+    </div>
+
+    <nav class="tab-bar">
+        <div class="tab-item"><div class="tab-icon"></div>Главная</div>
+        <div class="tab-item tab-active"><div class="tab-icon"></div>Группы</div>
+        <div class="tab-item"><div class="tab-icon"></div>Заявки</div>
+        <div class="tab-item"><div class="tab-icon"></div>Выход</div>
+    </nav>
+
+</body>
+</html>

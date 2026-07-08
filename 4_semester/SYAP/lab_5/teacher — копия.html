@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe: Успеваемость и Посещаемость</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 1920px;
+        }
+
+        .container {
+            width: 1400px;
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .nav-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+        }
+
+        .nav-active {
+            background: #F0F0F0;
+            border-radius: 6px;
+            padding: 0 8px;
+            margin-left: -8px;
+        }
+
+        /* Content */
+        .content {
+            flex-grow: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        /* Итоговая статистика */
+        .stats-summary {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr; /* Увеличил центр для посещаемости */
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #FFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Специальный блок посещаемости */
+        .attendance-split {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .attendance-item {
+            flex: 1;
+        }
+
+        .attendance-value {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .attendance-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .divider {
+            width: 1px;
+            background: #EEE;
+            margin: 0 10px;
+        }
+
+        /* Карточка предмета */
+        .subject-card {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 120px;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .subject-info .name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Сетка лабораторных (Квадратики) */
+        .labs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .lab-box {
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid #DDD;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: #999;
+        }
+
+        .lab-done {
+            background-color: #333;
+            border-color: #333;
+            color: #FFF;
+        }
+
+        .lab-pending {
+            border-style: dashed;
+            border-color: #BBB;
+        }
+
+        .points-value {
+            font-size: 20px;
+            font-weight: 800;
+            text-align: right;
+        }
+
+        .points-label {
+            font-size: 10px;
+            color: #AAA;
+            text-transform: uppercase;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo"></div>
+            <div class="nav-item"><div class="nav-icon"></div>Главная</div>
+            <div class="nav-item"><div class="nav-icon"></div>Расписание</div>
+            <div class="nav-item nav-active"><div class="nav-icon"></div>Успеваемость</div>
+            <div class="nav-item"><div class="nav-icon"></div>Документы</div>
+            <div class="nav-item" style="margin-top: 60px; color: #999;"><div class="nav-icon"></div>Выход</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="header">
+                <div style="font-size: 24px; font-weight: 800;">Контроль обучения</div>
+                <div style="font-size: 14px; color: #666;">Студент: Сикорский А.А.</div>
+            </div>
+
+            <!-- Итоговая статистика -->
+            <div class="stats-summary">
+                <!-- Средний балл -->
+                <div class="stat-card">
+                    <div style="font-size: 28px; font-weight: 800;">9.8</div>
+                    <div style="font-size: 12px; color: #888; margin-top: 4px;">Средний балл</div>
+                </div>
+
+                <!-- НОВЫЙ БЛОК: ПОСЕЩАЕМОСТЬ -->
+                <div class="stat-card">
+                    <div style="font-size: 12px; font-weight: 700; color: #333; margin-bottom: 8px;">ПРОПУСКИ ЗАНЯТИЙ</div>
+                    <div class="attendance-split">
+                        <div class="attendance-item">
+                            <div class="attendance-value">4</div>
+                            <div class="attendance-label">Уважительные</div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="attendance-item">
+                            <div class="attendance-value" style="color: #000;">2</div>
+                            <div class="attendance-label">Неуважительные</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Лабы -->
+                <div class="stat-card">
+                    <div style="font-size: 28px; font-weight: 800;">16 / 23</div>
+                    <div style="font-size: 12px; color: #888; margin-top: 4px;">Сдано лабораторных</div>
+                </div>
+            </div>
+
+            <div style="font-size: 13px; font-weight: 600; color: #888; margin-bottom: 16px; text-transform: uppercase;">Прогресс лабораторных работ</div>
+
+            <!-- Пример предмета -->
+            <div class="subject-card">
+                <div class="subject-info">
+                    <div class="name">Дизайн пользовательских интерфейсов</div>
+                    <div style="font-size: 12px; color: #888;">Уласевич Н. И.</div>
+                </div>
+                <div class="labs-grid">
+                    <div class="lab-box lab-done">1</div>
+                    <div class="lab-box lab-done">2</div>
+                    <div class="lab-box lab-done">3</div>
+                    <div class="lab-box lab-done">4</div>
+                    <div class="lab-box lab-pending">5</div>
+                    <div class="lab-box">6</div>
+                    <div class="lab-box">7</div>
+                    <div class="lab-box">8</div>
+                </div>
+                <div>
+                    <div class="points-value">9.2</div>
+                    <div class="points-label">Средний балл</div>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-info">
+                    <div class="name">Основы алгоритмизации и программирования</div>
+                    <div style="font-size: 12px; color: #888;">Белодед Н. И.</div>
+                </div>
+                <div class="labs-grid">
+                    <div class="lab-box lab-done">1</div>
+                    <div class="lab-box lab-done">2</div>
+                    <div class="lab-box">3</div>
+                    <div class="lab-box">4</div>
+                    <div class="lab-box">5</div>
+                </div>
+                <div>
+                    <div class="points-value">9.9</div>
+                    <div class="points-label">Средний балл</div>
+                </div>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-info">
+                    <div class="name">Алгоритмы и структуры данных</div>
+                    <div style="font-size: 12px; color: #888;">Шиман Д. В.</div>
+                </div>
+                <div class="labs-grid">
+                    <div class="lab-box lab-done">1</div>
+                    <div class="lab-box lab-done">2</div>
+                    <div class="lab-box lab-done">3</div>
+                    <div class="lab-box lab-done">4</div>
+                    <div class="lab-box lab-done">5</div>
+                    <div class="lab-box lab-done">6</div>
+                    <div class="lab-box lab-done">7</div>
+                    <div class="lab-box lab-done">8</div>
+                    <div class="lab-box lab-done">9</div>
+                    <div class="lab-box lab-done">10</div>
+                </div>
+                <div>
+                    <div class="points-value">9.8</div>
+                    <div class="points-label">Средний балл</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

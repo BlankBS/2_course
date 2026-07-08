@@ -1,0 +1,6 @@
+﻿{
+  "Celebrities": {
+    "PhotosFolder": "D:\\BSTU\\2_course\\4_semester\\TPVI\\lab_6\\lab_6\\Photos",
+    "ConnectionString": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LES01;Integrated Security=True;"
+  }
+}

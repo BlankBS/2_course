@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Journal: Academic System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px;
+            padding-bottom: 100px; /* Запас под таб-бар и кнопку */
+        }
+
+        header {
+            padding: 20px 16px 10px;
+        }
+
+        .title { font-size: 20px; font-weight: 800; }
+        .subtitle { font-size: 13px; color: #888; margin-top: 4px; }
+
+        /* Виджет текущей пары */
+        .session-card {
+            background: #FAFAFA;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            margin: 16px;
+            padding: 16px;
+        }
+
+        .session-info { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            background: #FFF;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #F0F0F0;
+        }
+        .stat-item { text-align: center; flex: 1; }
+        .stat-val { font-size: 18px; font-weight: 800; display: block; }
+        .stat-lab { font-size: 10px; color: #AAA; text-transform: uppercase; }
+
+        /* Списки (Объявления и Сообщения) */
+        .info-section {
+            margin: 0 16px 20px;
+            padding: 16px;
+            background: #FFF;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+        }
+        .section-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+        .badge { background: #FFDADA; color: #C00; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+
+        /* ЖУРНАЛ (Список студентов) */
+        .attendance-container { padding: 0 16px; }
+        .date-label { font-size: 11px; color: #AAA; margin-bottom: 12px; display: block; text-align: right; }
+
+        .student-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F5F5F5;
+        }
+
+        .student-info { flex-grow: 1; }
+        .student-name { font-size: 14px; font-weight: 600; }
+        .absence-reason { font-size: 11px; color: #AAA; font-style: italic; margin-top: 2px; }
+
+        .checkbox {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 2px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checked { background: #B2FFB2; border-color: #B2FFB2; }
+
+        /* Кнопка */
+        .btn-fixed {
+            position: fixed;
+            bottom: 75px;
+            left: 16px;
+            right: 16px;
+            background: #000;
+            color: #FFF;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Таб бар */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; }
+        .tab-active { color: #000; font-weight: 700; }
+        .tab-icon { width: 22px; height: 22px; background: #EEE; border-radius: 5px; margin-bottom: 4px; }
+        .tab-active .tab-icon { background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title">Группа 2-8</div>
+        <div class="subtitle">Староста: Сикорский А. А.</div>
+    </header>
+
+    <!-- Текущая пара -->
+    <div class="session-card">
+        <div class="session-info">Дизайн пользовательских интерфейсов</div>
+        <div class="stats-row">
+            <div class="stat-item"><span class="stat-val">11 / 14</span><span class="stat-lab">Присутствуют</span></div>
+            <div style="width: 1px; background: #EEE;"></div>
+            <div class="stat-item"><span class="stat-val">78%</span><span class="stat-lab">Явка</span></div>
+        </div>
+    </div>
+
+    <!-- Объявления -->
+    <div class="info-section">
+        <div class="section-title">Объявления <span class="badge">ВАЖНОЕ</span></div>
+        <div style="font-size: 12px; color: #666;">Перенос пары по БД в пятницу на 16:25.</div>
+    </div>
+
+    <!-- Список посещаемости -->
+    <div class="attendance-container">
+        <span class="section-title">Отметка посещаемости</span>
+        <span class="date-label">24.03.2026</span>
+
+        <div class="student-row">
+            <div class="student-info">
+                <div class="student-name">Абрамов Абрам Абрамович</div>
+            </div>
+            <div class="checkbox checked"></div>
+        </div>
+
+        <div class="student-row">
+            <div class="student-info">
+                <div class="student-name">Борисов Борис Борисович</div>
+                <div class="absence-reason">Болезнь (справка)</div>
+            </div>
+            <div class="checkbox"></div>
+        </div>
+
+        <div class="student-row">
+            <div class="student-info">
+                <div class="student-name">Васильев Василий Васильевич</div>
+            </div>
+            <div class="checkbox checked"></div>
+        </div>
+    </div>
+
+    <div class="btn-fixed">Сохранить и отправить</div>
+
+    <nav class="tab-bar">
+        <div class="tab-item tab-active"><div class="tab-icon"></div>Журнал</div>
+        <div class="tab-item"><div class="tab-icon"></div>Расписание</div>
+        <div class="tab-item"><div class="tab-icon"></div>Успеваемость</div>
+        <div class="tab-item"><div class="tab-icon"></div>Выход</div>
+    </nav>
+
+</body>
+</html>

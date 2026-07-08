@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 0,
+    "Firstname": "Updated1",
+    "Surname": "Updated1",
+    "PhotoPath": "Photo/Updated1.jpg"
+  },
+  {
+    "Id": 0,
+    "Firstname": "Updated2",
+    "Surname": "Updated2",
+    "PhotoPath": "Photo/Updated2.jpg"
+  }
+]

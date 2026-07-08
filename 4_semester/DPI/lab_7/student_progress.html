@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Grades: Academic System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px;
+            padding-bottom: 80px;
+        }
+
+        header {
+            padding: 20px 16px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* Статистика сверху (Вертикальный стек) */
+        .stats-container {
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #FAFAFA;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-value { font-size: 24px; font-weight: 800; }
+        .stat-label { font-size: 11px; color: #999; text-transform: uppercase; margin-top: 4px; }
+
+        /* Специальный блок пропусков */
+        .attendance-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 8px;
+        }
+        .attendance-item b { font-size: 18px; display: block; }
+        .attendance-item span { font-size: 9px; color: #AAA; text-transform: uppercase; }
+
+        /* Список предметов */
+        .subjects-container {
+            padding: 0 16px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #BBB;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .subject-card {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F5F5F5;
+        }
+
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .subject-title { font-size: 15px; font-weight: 700; max-width: 80%; }
+        .subject-grade { font-size: 16px; font-weight: 800; }
+
+        /* Квадратики лабораторных */
+        .labs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .lab-box {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .done { background: #B2FFB2; color: #2D5A2D; } /* Зеленый как на скрине */
+        .pending { border: 1px solid #E0E0E0; color: #CCC; background: transparent; } /* Без фона */
+
+        /* Таб бар */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; }
+        .tab-active { color: #000; font-weight: 700; }
+        .tab-icon { width: 22px; height: 22px; background: #EEE; border-radius: 5px; margin-bottom: 4px; }
+        .tab-active .tab-icon { background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>Контроль обучения</header>
+
+    <div class="stats-container">
+        <!-- GPA -->
+        <div class="stat-card">
+            <div class="stat-value">9.8</div>
+            <div class="stat-label">Средний балл</div>
+        </div>
+
+        <!-- Пропуски -->
+        <div class="stat-card">
+            <div class="stat-label" style="margin-bottom: 8px;">Пропуски занятий</div>
+            <div class="attendance-grid">
+                <div class="attendance-item"><b>4</b><span>Уважительные</span></div>
+                <div style="width: 1px; background: #EEE;"></div>
+                <div class="attendance-item"><b>2</b><span>Неуважительные</span></div>
+            </div>
+        </div>
+
+        <!-- Всего лаб -->
+        <div class="stat-card">
+            <div class="stat-value">16 / 23</div>
+            <div class="stat-label">Сдано лабораторных</div>
+        </div>
+    </div>
+
+    <div class="subjects-container">
+        <div class="section-label">Прогресс лабораторных работ</div>
+
+        <!-- Предмет 1 -->
+        <div class="subject-card">
+            <div class="subject-header">
+                <div class="subject-title">Дизайн пользовательских интерфейсов</div>
+                <div class="subject-grade">9.2</div>
+            </div>
+            <div class="labs-grid">
+                <div class="lab-box done">1</div>
+                <div class="lab-box done">2</div>
+                <div class="lab-box done">3</div>
+                <div class="lab-box done">4</div>
+                <div class="lab-box pending">5</div>
+                <div class="lab-box pending">6</div>
+                <div class="lab-box pending">7</div>
+                <div class="lab-box pending">8</div>
+            </div>
+        </div>
+
+        <!-- Предмет 2 -->
+        <div class="subject-card">
+            <div class="subject-header">
+                <div class="subject-title">Основы алгоритмизации</div>
+                <div class="subject-grade">9.9</div>
+            </div>
+            <div class="labs-grid">
+                <div class="lab-box done">1</div>
+                <div class="lab-box done">2</div>
+                <div class="lab-box pending">3</div>
+                <div class="lab-box pending">4</div>
+                <div class="lab-box pending">5</div>
+            </div>
+        </div>
+
+        <!-- Предмет 3 -->
+        <div class="subject-card">
+            <div class="subject-header">
+                <div class="subject-title">Алгоритмы и структуры данных</div>
+                <div class="subject-grade">9.8</div>
+            </div>
+            <div class="labs-grid">
+                <div class="lab-box done">1</div>
+                <div class="lab-box done">2</div>
+                <div class="lab-box done">3</div>
+                <div class="lab-box done">4</div>
+                <div class="lab-box done">5</div>
+                <div class="lab-box done">6</div>
+                <div class="lab-box done">7</div>
+                <div class="lab-box done">8</div>
+                <div class="lab-box done">9</div>
+                <div class="lab-box done">10</div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="tab-bar">
+        <div class="tab-item"><div class="tab-icon"></div>Главная</div>
+        <div class="tab-item"><div class="tab-icon"></div>Расписание</div>
+        <div class="tab-item tab-active"><div class="tab-icon"></div>Успеваемость</div>
+        <div class="tab-item"><div class="tab-icon"></div>Выход</div>
+    </nav>
+
+</body>
+</html>

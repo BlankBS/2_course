@@ -1,0 +1,68 @@
+<Window x:Class="lab_4_5.Views.AddSkinWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource m_NewSkin}" Height="800" Width="400"
+        Background="{DynamicResource SecondaryBG}" WindowStartupLocation="CenterOwner"
+		Icon="pack://application:,,,/Resources/Icons/app.ico">
+    <StackPanel Margin="20">
+        <TextBlock Text="{DynamicResource m_NewItem}" x:Name="txtHeader" Foreground="{DynamicResource AccentColor}" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <Label Content="{DynamicResource m_Name}" Foreground="{DynamicResource MainText}"/>
+        <TextBox x:Name="txtName" Margin="0,5,0,10"/>
+
+        <Label Content="{DynamicResource m_Cost}" Foreground="{DynamicResource MainText}"/>
+        <TextBox x:Name="txtPrice" Margin="0,5,0,10"/>
+
+        <Label Content="{DynamicResource m_Quantity}" Foreground="{DynamicResource MainText}"/>
+		<TextBox x:Name="txtQuantity" Text="1" Margin="0,5,0,10" Padding="5" PreviewTextInput="NumberValidationTextBox"/>
+
+        <Label Content="{DynamicResource m_Category}" Foreground="White"/>
+        <ComboBox x:Name="cmbCategory" Margin="0,5,0,10" Padding="5" Style="{StaticResource PubgComboBoxStyle}">
+            <ComboBox.Items>
+                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">Cat_Weapon</System:String>
+                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">Cat_Clothing</System:String>
+                <System:String xmlns:System="clr-namespace:System;assembly=mscorlib">Cat_Vehicle</System:String>
+            </ComboBox.Items>
+
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock x:Name="txt" Text="{Binding}"/>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding}" Value="Cat_Weapon">
+                            <Setter TargetName="txt" Property="Text" Value="{DynamicResource Cat_Weapon}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding}" Value="Cat_Clothing">
+                            <Setter TargetName="txt" Property="Text" Value="{DynamicResource Cat_Clothing}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding}" Value="Cat_Vehicle">
+                            <Setter TargetName="txt" Property="Text" Value="{DynamicResource Cat_Vehicle}"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="{DynamicResource m_Rarity}" Foreground="{DynamicResource MainText}"/>
+
+        <ComboBox Margin="0,5,0,10" Style="{StaticResource PubgComboBoxStyle}" x:Name="cmbRarity">
+            <ComboBoxItem Content="Common"/>
+            <ComboBoxItem Content="Rare"/>
+            <ComboBoxItem Content="Epic"/>
+            <ComboBoxItem Content="Legendary" IsSelected="True"/>
+        </ComboBox>
+
+        <Label Content="{DynamicResource m_Preview}" Foreground="{DynamicResource MainText}" Margin="0,10,0,0"/>
+        <Border BorderBrush="{DynamicResource AccentColor}" BorderThickness="1" Height="150" Margin="0,5" CornerRadius="5" Background="{DynamicResource CardColor}">
+            <Image x:Name="imgPreview" Stretch="Uniform" Margin="5"
+				   Source="/Resources/Images/placeholder.png"/>
+		</Border>
+
+        <Button x:Name="btnSelectImage" Content="{DynamicResource m_ChoosePicture}" Click="btnSelectImage_Click" Margin="0,10" Background="{DynamicResource AccentColor}"/>
+        <TextBlock x:Name="lblImagePath" Text="{DynamicResource m_PictureNotSelected}" Foreground="Gray" FontSize="10" TextWrapping="Wrap"/>
+
+        <UniformGrid Columns="2" Margin="0,20,0,0">
+            <Button Content="{DynamicResource m_Save}" Click="btnSave_Click" Background="{DynamicResource AccentColor}" FontWeight="Bold" Margin="5" Foreground="{DynamicResource MainText}"/>
+            <Button Content="{DynamicResource m_Decline}" Click="btnCancel_Click" Margin="5" Background="{DynamicResource AccentColor}" Foreground="{DynamicResource MainText}"/>
+        </UniformGrid>
+    </StackPanel>
+</Window>

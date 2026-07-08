@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe: Дашборд Студента</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%; /* Фиксированная ширина для корректного импорта */
+        }
+
+        /* Рабочая область 1400px по центру */
+        .container {
+            width: 1400px;
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        /* Боковое меню (Навигация) */
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .nav-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+        }
+
+        /* Основной контент */
+        .content {
+            flex-grow: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 50%;
+        }
+
+        /* Сетка карточек (Grid) */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Элементы внутри карточек */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .tag {
+            background: #F0F0F0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        /* Плейсхолдер для графика/картинки */
+        .placeholder {
+            width: 100%;
+            height: 120px;
+            background: #FAFAFA;
+            border: 1px dashed #CCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .btn-small {
+            background: #333;
+            color: #FFF;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Навигация -->
+        <div class="sidebar">
+            <div class="sidebar-logo"></div>
+            <div class="nav-item"><div class="nav-icon"></div>Главная</div>
+            <div class="nav-item"><div class="nav-icon"></div>Расписание</div>
+            <div class="nav-item"><div class="nav-icon"></div>Успеваемость</div>
+            <div class="nav-item"><div class="nav-icon"></div>Документы</div>
+            <div class="nav-item" style="margin-top: 40px; color: #999;"><div class="nav-icon"></div>Выход</div>
+        </div>
+
+        <!-- Контент -->
+        <div class="content">
+            <div class="header">
+                <div style="font-size: 24px; font-weight: 800;">Обзор обучения</div>
+                <div class="user-info">
+                    <div style="text-align: right;">
+                        <div style="font-weight: 600;">Сикорский А. А.</div>
+                        <div style="font-size: 12px; color: #777;">Группа: 2-8</div>
+                    </div>
+                    <div class="user-avatar"></div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <!-- Ближайшая пара -->
+                <div class="card" style="grid-column: span 2; background: #333; color: #FFF; border: none;">
+                    <div style="font-size: 14px; opacity: 0.7;">Ближайшая пара начинается через 15 минут</div>
+                    <div style="font-size: 28px; font-weight: 700; margin: 8px 0;">Дизайн пользовательских интерфейсов</div>
+                    <div style="display: flex; gap: 24px;">
+                        <span>Каб. 308-1</span>
+                        <span>Преп: Уласевич Н. И.</span>
+                    </div>
+                </div>
+
+                <!-- Расписание на сегодня -->
+                <div class="card">
+                    <div class="card-title">Расписание на сегодня <button class="btn-small">Весь календарь</button></div>
+                    <div class="row">
+                        <span>14:40 - 16:05</span>
+                        <span style="font-weight: 600;">ДПИ</span>
+                        <span class="tag">ЛК</span>
+                    </div>
+                    <div class="row">
+                        <span>16:25 - 17:50</span>
+                        <span style="font-weight: 600;">Основы права</span>
+                        <span class="tag">ЛК</span>
+                    </div>
+                    <div class="row" style="border: none;">
+                        <span>18:00 - 19:25</span>
+                        <span style="font-weight: 600;">ООП</span>
+                        <span class="tag">ЛР</span>
+                    </div>
+                    <div class="row" style="border: none;">
+                        <span>19:35 - 21:00</span>
+                        <span style="font-weight: 600;">ДПИ</span>
+                        <span class="tag">ЛР</span>
+                    </div>
+                </div>
+
+                <!-- Последние оценки -->
+                <div class="card">
+                    <div class="card-title">Успеваемость</div>
+                    <div class="placeholder">График GPA (Средний балл)</div>
+                    <div style="margin-top: 20px;">
+                        <div class="row" style="font-size: 14px;">
+                            <span>Философия</span>
+                            <span style="font-weight: 700;">8</span>
+                        </div>
+                        <div class="row" style="font-size: 14px; border: none;">
+                            <span>ДПИ</span>
+                            <span style="font-weight: 700;">9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Статус документов -->
+                <div class="card" style="grid-column: span 2;">
+                    <div class="card-title">Ваши заявки на справки</div>
+                    <div class="row">
+                        <span>Справка об обучении №442</span>
+                        <span class="tag" style="background: #E0E0E0;">В обработке</span>
+                        <span>23.03.2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

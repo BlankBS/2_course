@@ -1,0 +1,212 @@
+﻿<Window x:Class="lab_4_5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:lab_4_5.ViewModels"
+        Title="PUBG Skin Market" Height="650" Width="1050"
+        Icon="pack://application:,,,/Resources/Icons/app.ico" 
+        AllowDrop="True" Drop="Image_Drop"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen"
+        MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}" >
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        
+        <Style x:Key="CaptionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#444444"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PubgButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                   <Grid>
+                            <Path Data="M 10,0 L 100,0 L 110,15 L 100,30 L 10,30 L 0,15 Z" 
+                          Fill="{TemplateBinding Background}" 
+                          Stretch="Fill" 
+                          Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
+    </Window.Resources>
+    
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+   
+    <Grid Background="#1A1A1A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#2D2D2D">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
+                <Image Source="pack://application:,,,/Resources/Icons/app.ico" Width="20" Height="20" Margin="0,0,10,0"/>
+                <TextBlock Text="PUBG SKIN MARKET" Foreground="#F2A900" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True">
+                <Button Content="—" Click="MinimizeWin" Style="{StaticResource CaptionButtonStyle}"/>
+                <Button Content="☐" Click="MaximizeWin" Style="{StaticResource CaptionButtonStyle}"/>
+                <Button Content="✕" Click="CloseWin"    Style="{StaticResource CloseButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="#2D2D2D" Margin="10" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="PUBG MARKET" Foreground="#F2A900" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+                        <CheckBox Content="{DynamicResource m_Admin}" 
+                                  IsChecked="{Binding IsAdmin}" 
+                                  Foreground="#F2A900" 
+                                  FontWeight="Bold"
+                                  Margin="0,10,0,15"/>      
+                        <Label Content="{DynamicResource m_Search}" Foreground="White"/>
+                        <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,10"/>
+                        <Label Content="{DynamicResource m_Category}" Foreground="White"/>
+                        <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Margin="0,5,0,10">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock x:Name="CategoryText" Text="{Binding}"/>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding}" Value="Cat_All">
+                                            <Setter TargetName="CategoryText" Property="Text" Value="{DynamicResource Cat_All}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="Cat_Weapon">
+                                            <Setter TargetName="CategoryText" Property="Text" Value="{DynamicResource Cat_Weapon}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="Cat_Clothing">
+                                            <Setter TargetName="CategoryText" Property="Text" Value="{DynamicResource Cat_Clothing}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding}" Value="Cat_Vehicle">
+                                            <Setter TargetName="CategoryText" Property="Text" Value="{DynamicResource Cat_Vehicle}"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Slider Minimum="0" Maximum="1000" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding MaxPrice, UpdateSourceTrigger=PropertyChanged}" Margin="0,5"/>
+                        <TextBlock Foreground="#F2A900" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Right">
+                            <Run Text="{DynamicResource m_PriceTo}"/>
+                            <Run Text="{Binding MaxPrice, StringFormat={}{0:F0}}"/>
+                            <Run Text="{DynamicResource m_Currency}"/>
+                        </TextBlock>
+                        <Button Content="{DynamicResource m_Add}" Command="{Binding AddCommand}" Margin="0,15" Height="35" Background="#F2A900" FontWeight="Bold" Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+
+                    <GroupBox Grid.Row="1" Header="{DynamicResource m_Basket}" Foreground="#F2A900" Margin="10" BorderBrush="#444444">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Bottom" Content="{DynamicResource m_Checkout}" Command="{Binding CheckoutCommand}" Background="#F2A900" FontWeight="Bold" Height="30" Margin="5"/>
+                            <TextBlock DockPanel.Dock="Bottom" Foreground="White" HorizontalAlignment="Center" Margin="5">
+                                <Run Text="{DynamicResource m_Total}"/>
+                                <Run Text="{Binding CartTotal, StringFormat={}{0:F2}}"/>
+                                <Run Text="{DynamicResource m_Currency}"/>
+                            </TextBlock>
+                            <ListBox ItemsSource="{Binding CartItems}" Background="Transparent" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <DockPanel Width="200">
+                                            <Button DockPanel.Dock="Right" Content="×" Command="{Binding DataContext.RemoveFromCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Background="Transparent" Foreground="Red" BorderThickness="0"/>
+                                            <TextBlock Text="{Binding ShortName}" Foreground="White" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding Price, StringFormat={}{0}$}" Foreground="#F2A900" Margin="20,0,0,0"/>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <Button Content="RU" Click="ChangeLang" Tag="ru" Width="45" Height="30" Margin="5" Background="#333333" Foreground="White"/>
+                        <Button Content="EN" Click="ChangeLang" Tag="en" Width="45" Height="30" Margin="5" Background="#333333" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <DockPanel Grid.Column="1" Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding FilteredSkins}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="220" MinHeight="300" Background="#333333" Margin="10" CornerRadius="8">
+                                    <StackPanel>
+                                        <Image Source="{Binding ImagePath}" Height="140" Width="210" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="{Binding ShortName}" Foreground="White" FontWeight="Bold" Margin="10,5"/>
+                                        <TextBlock Text="{Binding Rarity}" Foreground="LightGray" Margin="10,0"/>
+                                        <TextBlock Text="{Binding Price, StringFormat={}{0}$}" Foreground="#F2A900" FontSize="18" Margin="10,5"/>
+                                        <TextBlock Foreground="LightGray" FontSize="11" Margin="10,0">
+                                <Run Text="{DynamicResource m_InStock}"/>
+                                <Run Text="{Binding Quantity, Mode=OneWay}"/>
+                                <Run Text="{DynamicResource m_Unit}"/>
+                                        </TextBlock>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <Button Content="{DynamicResource m_AddToBasket}" Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Width="110" Height="30" Margin="5" Background="#F2A900" Foreground="Black" FontWeight="Bold">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Quantity}" Value="0">
+                                                                <Setter Property="IsEnabled" Value="False"/>
+                                                                <Setter Property="Opacity" Value="0.5"/>
+                                                                <Setter Property="Content" Value="НЕТ В НАЛИЧИИ"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                            <Button Content="⚙" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Width="40" Margin="5" Background="#444444" Foreground="White" Visibility="{Binding DataContext.IsAdmin, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}"/>
+                                            <Button Content="❌" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Width="40" Margin="5" Background="Transparent" Foreground="Red" BorderBrush="Red"  Visibility="{Binding DataContext.IsAdmin, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Grid>
+    </Grid>
+    
+</Window>

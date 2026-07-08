@@ -1,0 +1,6 @@
+{
+	"Celebrities": {
+		"PhotoPath": "D:\\2-course\\2_semester\\ТПВИ\\лабы\\лаба_6\\ASPA006_1\\wwwroot\\images",
+		"ConnectionString": "Data Source=localhost;Initial Catalog=CelebrityDB;Integrated Security=True;TrustServerCertificate=True;"
+	}
+}

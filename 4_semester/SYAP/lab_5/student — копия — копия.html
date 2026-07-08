@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe: Расписание занятий</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .container {
+            width: 1400px;
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        /* Sidebar (Копия с дашборда для единообразия) */
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .nav-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+        }
+
+        .nav-active {
+            background: #F0F0F0;
+            border-radius: 6px;
+            padding: 0 8px;
+            margin-left: -8px;
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        /* Фильтры и переключатели */
+        .controls {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            background: #FFF;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #E0E0E0;
+        }
+
+        .toggle-btn {
+            padding: 8px 16px;
+            border: 1px solid #CCC;
+            background: #FFF;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .toggle-active {
+            background: gray;
+            color: #FFF;
+            border-color: lightgray;
+        }
+
+        /* Сетка расписания по дням */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .day-card {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .day-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #EEE;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .lesson {
+            margin-bottom: 16px;
+            padding: 8px;
+            border-radius: 6px;
+            background: #FAFAFA;
+        }
+
+        .lesson-time {
+            font-size: 11px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .lesson-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        .lesson-info {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 10px;
+            background: #E0E0E0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo"></div>
+            <div class="nav-item"><div class="nav-icon"></div>Главная</div>
+            <div class="nav-item nav-active"><div class="nav-icon"></div>Расписание</div>
+            <div class="nav-item"><div class="nav-icon"></div>Успеваемость</div>
+            <div class="nav-item"><div class="nav-icon"></div>Объявления</div>
+            <div class="nav-item" style="margin-top: 60px; color: #999;"><div class="nav-icon"></div>Выход</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="header">
+                <div style="font-size: 24px; font-weight: 800;">Расписание занятий</div>
+                <div style="font-weight: 600; color: #666;">Группа 2-8</div>
+            </div>
+
+            <!-- Контролы -->
+            <div class="controls">
+                <div class="toggle-btn toggle-active">Вторая неделя</div>
+                <div style="flex-grow: 1;"></div>
+                <div class="toggle-btn">Март 2026</div>
+            </div>
+
+            <!-- Сетка дней -->
+            <div class="schedule-grid">
+                
+                <!-- Понедельник -->
+                <div class="day-card">
+                    <div class="day-title">Понедельник <span style="font-weight: 400; color: #999;">23.03</span></div>
+                    <div class="lesson">
+                        <div class="lesson-time">14:40 — 16:05</div>
+                        <div class="lesson-name">ТПвИ</div>
+                        <div class="lesson-info">Каб. 200-3а • Смелов В. В.</div>
+                        <div class="tag">Лекция</div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-time">16:25 — 17:50</div>
+                        <div class="lesson-name">ООП</div>
+                        <div class="lesson-info">Каб. 200-3а • Белодед Н. И.</div>
+                        <div class="tag">Лекция</div>
+                    </div>
+                </div>
+
+                <!-- Вторник -->
+                <div class="day-card">
+                    <div class="day-title">Вторник <span style="font-weight: 400; color: #999;">24.03</span></div>
+                    <div style="text-align: center; color: #AAA; padding: 40px 0; font-size: 14px; font-style: italic;">
+                        Занятий не найдено
+                    </div>
+                </div>
+
+                <!-- Среда -->
+                <div class="day-card">
+                    <div class="day-title">Среда <span style="font-weight: 400; color: #999;">25.03</span></div>
+                    <div style="text-align: center; color: #AAA; padding: 40px 0; font-size: 14px; font-style: italic;">
+                        Занятий не найдено
+                    </div>
+                </div>
+
+                <!-- Четверг -->
+                <div class="day-card">
+                    <div class="day-title">Четверг <span style="font-weight: 400; color: #999;">26.03</span></div>
+                    <div style="text-align: center; color: #AAA; padding: 40px 0; font-size: 14px; font-style: italic;">
+                        Занятий не найдено
+                    </div>
+                </div>
+
+                <!-- Пятница -->
+                <div class="day-card">
+                    <div class="day-title">Пятница <span style="font-weight: 400; color: #999;">27.03</span></div>
+                    <div style="text-align: center; color: #AAA; padding: 40px 0; font-size: 14px; font-style: italic;">
+                        Занятий не найдено
+                    </div>
+                </div>
+
+                <!-- Суббота -->
+                <div class="day-card">
+                    <div class="day-title">Суббота <span style="font-weight: 400; color: #999;">28.03</span></div>
+                    <div style="text-align: center; color: #AAA; padding: 40px 0; font-size: 14px; font-style: italic;">
+                        Занятий не найдено
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

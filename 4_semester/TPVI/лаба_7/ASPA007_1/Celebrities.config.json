@@ -1,0 +1,7 @@
+{
+	"Celebrities": {
+		"PhotosRequestPath": "/Photos",
+		"PhotoPath": "D:\\BSTU\\2_course\\4_semester\\TPVI\\lab_6\\lab_6\\Photos",
+		"ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=LES01;Trusted_Connection=True;"
+	}
+}

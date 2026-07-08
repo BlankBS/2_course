@@ -1,0 +1,12 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="PrimaryBG" Color="#FF5722"/>
+    <SolidColorBrush x:Key="CardColor" Color="#FFE0B2"/>
+    <SolidColorBrush x:Key="SecondaryBG" Color="#FFE0B2"/>
+    <SolidColorBrush x:Key="AccentColor" Color="#2D2D2D"/>
+    <SolidColorBrush x:Key="AccentLighterColor" Color="#6c6c6c"/>
+    <SolidColorBrush x:Key="MainText" Color="White"/>
+    <SolidColorBrush x:Key="InverseText" Color="Black"/>
+    <SolidColorBrush x:Key="AccentColorHover" Color="#FFD24D"/>
+    <SolidColorBrush x:Key="DisabledButton" Color="#2D2D2D"/>
+</ResourceDictionary>

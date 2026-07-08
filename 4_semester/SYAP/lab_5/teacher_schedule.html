@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe: Расписание Преподавателя</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 1920px;
+        }
+
+        .container {
+            width: 1400px;
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        /* Sidebar (Единый стиль системы) */
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .nav-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+        }
+
+        .nav-active {
+            background: #F0F0F0;
+            border-radius: 6px;
+            padding: 0 8px;
+            margin-left: -8px;
+        }
+
+        /* Content Area */
+        .content {
+            flex-grow: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        /* Контролы */
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            background: #FFF;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #E0E0E0;
+            align-items: center;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border: 1px solid #DDD;
+            background: #FFF;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .filter-active {
+            background: #000;
+            color: #FFF;
+            border-color: #000;
+        }
+
+        /* Сетка расписания */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .day-card {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .day-header {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #F0F0F0;
+            padding-bottom: 8px;
+        }
+
+        /* Карточка занятия */
+        .lesson-box {
+            background: #F9F9F9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid #CCC;
+        }
+
+        .time {
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
+        }
+
+        .group-tag {
+            background: #E0E0E0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .subject-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        .room {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-badge {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #EEE;
+            color: #777;
+        }
+
+        .status-filled {
+            background: #333;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo"></div>
+            <div class="nav-item"><div class="nav-icon"></div>Мои группы</div>
+            <div class="nav-item nav-active"><div class="nav-icon"></div>Расписание</div>
+            <div class="nav-item"><div class="nav-icon"></div>Ведомости</div>
+            <div class="nav-item"><div class="nav-icon"></div>Материалы</div>
+            <div class="nav-item" style="margin-top: 60px; color: #999;"><div class="nav-icon"></div>Выход</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="header">
+                <div>
+                    <div style="font-size: 24px; font-weight: 800;">График занятий</div>
+                    <div style="font-size: 14px; color: #666;">Преподаватель: Петров А.В. (Кафедра ИТ)</div>
+                </div>
+            </div>
+
+            <!-- Контролы -->
+            <div class="controls">
+                <div class="filter-chip filter-active">Текущая неделя</div>
+                <div class="filter-chip">Следующая</div>
+                <div style="flex-grow: 1;"></div>
+                <div class="filter-chip">Печать</div>
+            </div>
+
+            <!-- Сетка -->
+            <div class="schedule-grid">
+                
+                <!-- Понедельник -->
+                <div class="day-card">
+                    <div class="day-header">Понедельник <span style="font-weight: 400; color: #999;">23.03</span></div>
+                    
+                    <div class="lesson-box"">
+                        <div class="group-tag">2 6-10 ФИТ</div>
+                        <div class="time">14:40 — 16:05</div>
+                        <div class="subject-name">Высшая математика</div>
+                        <div class="room">Ауд. 402-2 • ЛК</div>
+                    </div>
+
+                    <div class="lesson-box">
+                        <div class="group-tag">2-8 ФИТ</div>
+                        <div class="time">16:25 — 17:50</div>
+                        <div class="subject-name">Дискретная математика</div>
+                        <div class="room">Ауд. 305-4 • ПЗ</div>
+                    </div>
+                </div>
+
+                <!-- Вторник -->
+                <div class="day-card">
+                    <div class="day-header">Вторник <span style="font-weight: 400; color: #999;">24.03</span></div>
+                    <div class="lesson-box">
+                        <div class="group-tag">2-8 ФИТ</div>
+                        <div class="time">14:40 — 16:05</div>
+                        <div class="subject-name">Линейная алгебра и аналитическая геометрия</div>
+                        <div class="room">Ауд. 210-4 • ПЗ</div>
+                    </div>
+                </div>
+
+                <!-- Среда -->
+                <div class="day-card" style="background: #FAFAFA; border: 1px dashed #CCC;">
+                    <div class="day-header">Среда <span style="font-weight: 400; color: #999;">25.03</span></div>
+                    <div style="text-align: center; color: #999; padding: 40px 0; font-size: 13px;">Занятий не найдено</div>
+                </div>
+
+                <!-- Четверг -->
+                <div class="day-card">
+                    <div class="day-header">Четверг <span style="font-weight: 400; color: #999;">26.03</span></div>
+                    <div class="lesson-box">
+                        <div class="group-tag">2 6-10 ФИТ</div>
+                        <div class="time">14:40 — 16:05</div>
+                        <div class="subject-name">Теория вероятности и математическая статистика</div>
+                        <div class="room">Ауд. 402-2 • ЛК</div>
+                    </div>
+                </div>
+
+                <!-- Пятница -->
+                <div class="day-card">
+                    <div class="day-header">Пятница <span style="font-weight: 400; color: #999;">27.03</span></div>
+                    <div class="lesson-box">
+                        <div class="group-tag">2-8 ФИТ</div>
+                        <div class="time">14:40 — 16:05</div>
+                        <div class="subject-name">Математический анализ</div>
+                        <div class="room">Ауд. 102-4 • ПЗ</div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">Суббота <span style="font-weight: 400; color: #999;">28.03</span></div>
+                    <div class="lesson-box">
+                        <div class="group-tag">2-8-1 ФИТ</div>
+                        <div class="time">13:00 — 14:25</div>
+                        <div class="subject-name">ООП</div>
+                        <div class="room">Ауд. 308-1 • ЛР</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

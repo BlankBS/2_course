@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Wireframe: База студентов (Деканат)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 1920px;
+        }
+
+        .container {
+            width: 1400px;
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        /* Sidebar (Единый стиль) */
+        .sidebar {
+            width: 280px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .nav-item {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+        }
+
+        .nav-active {
+            background: #F0F0F0;
+            border-radius: 6px;
+            padding: 0 8px;
+            margin-left: -8px;
+        }
+
+        /* Content */
+        .content {
+            flex-grow: 1;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        /* Выбор курса (Вкладки) */
+        .course-selector {
+            display: flex;
+            gap: 8px;
+            background: #FFF;
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid #E0E0E0;
+            margin-bottom: 32px;
+        }
+
+        .course-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .course-tab-active {
+            background: #000;
+            color: #FFF;
+        }
+
+        /* Сетка групп */
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .group-card {
+            background: #FFF;
+            border: 1.5px solid #E0E0E0;
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .group-card-active {
+            border-color: #000;
+            background: #FAFAFA;
+        }
+
+        .group-name {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .group-count {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* Таблица студентов */
+        .card {
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .student-table th {
+            text-align: left;
+            font-size: 11px;
+            color: #AAA;
+            padding: 12px;
+            border-bottom: 2px solid #EEE;
+            text-transform: uppercase;
+        }
+
+        .student-table td {
+            padding: 14px 12px;
+            border-bottom: 1px solid #F0F0F0;
+            font-size: 14px;
+        }
+
+        .search-mini {
+            width: 250px;
+            padding: 8px 12px;
+            border: 1px solid #DDD;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .btn-action {
+            background: #EEE;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-logo"></div>
+            <div class="nav-item"><div class="nav-icon"></div>Обзор</div>
+            <div class="nav-item nav-active"><div class="nav-icon"></div>Студенты</div>
+            <div class="nav-item"><div class="nav-icon"></div>Преподаватели</div>
+            <div class="nav-item"><div class="nav-icon"></div>Заявки (Справки)</div>
+            <div class="nav-item"><div class="nav-icon"></div>Отчеты</div>
+            <div class="nav-item" style="margin-top: 60px; color: #999;"><div class="nav-icon"></div>Выход</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="header">
+                <div style="font-size: 24px; font-weight: 800;">Реестр студентов</div>
+                <div style="font-size: 14px; color: #666;">Всего на факультете: 1,240</div>
+            </div>
+
+            <!-- Разделение по курсам -->
+            <div class="course-selector">
+                <div class="course-tab">1 Курс</div>
+                <div class="course-tab course-tab-active">2 Курс</div>
+                <div class="course-tab">3 Курс</div>
+                <div class="course-tab">4 Курс</div>
+                <div class="course-tab">Магистратура</div>
+            </div>
+
+            <div style="font-size: 12px; font-weight: 700; color: #AAA; margin-bottom: 12px; text-transform: uppercase;">Группы курса:</div>
+            
+            <!-- Сетка групп -->
+            <div class="group-grid">
+                <div class="group-card group-card-active">
+                    <div class="group-name">1 группа</div>
+                    <div class="group-count">30 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">2 группа</div>
+                    <div class="group-count">30 студента</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">3 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">4 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">5 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">6 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">7 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">8 группа</div>
+                    <div class="group-count">28 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">9 группа</div>
+                    <div class="group-count">25 студентов</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">10 группа</div>
+                    <div class="group-count">14 студентов</div>
+                </div>
+            </div>
+
+            <!-- Список студентов выбранной группы -->
+            <div class="card">
+                <div class="table-header">
+                    <div style="font-weight: 700;">Студенты группы 2-1</div>
+                    <input type="text" class="search-mini" placeholder="Поиск в группе...">
+                </div>
+                
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <th>ФИО Студента</th>
+                            <th>ID Билета</th>
+                            <th>Ср. балл</th>
+                            <th>Пропуски (Часы)</th>
+                            <th style="text-align: right;">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Иванов И. И.</b></td>
+                            <td>111111111</td>
+                            <td>9.6</td>
+                            <td>2 ч.</td>
+                            <td style="text-align: right;"><button class="btn-action">ПРОФИЛЬ</button></td>
+                        </tr>
+                        <tr>
+                            <td><b>Иванов И. И.</b></td>
+                            <td>111111111</td>
+                            <td>9.6</td>
+                            <td>2 ч.</td>
+                            <td style="text-align: right;"><button class="btn-action">ПРОФИЛЬ</button></td>
+                        </tr>
+                        <tr>
+                            <td><b>Иванов И. И.</b></td>
+                            <td>111111111</td>
+                            <td>9.6</td>
+                            <td>2 ч.</td>
+                            <td style="text-align: right;"><button class="btn-action">ПРОФИЛЬ</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="lab_4_5.Views.ProfileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Личный кабинет" Height="450" Width="400"
+        Background="{DynamicResource PrimaryBG}" WindowStartupLocation="CenterOwner"
+        WindowStyle="None" AllowsTransparency="False">
+
+	<WindowChrome.WindowChrome>
+		<WindowChrome CaptionHeight="40" GlassFrameThickness="0" CornerRadius="0" />
+	</WindowChrome.WindowChrome>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Background="{DynamicResource SecondaryBG}">
+			<TextBlock Text="{DynamicResource m_PersonalPage}" Foreground="{DynamicResource AccentColor}"
+                       FontWeight="Bold" VerticalAlignment="Center" Margin="15,0"/>
+			<Button Content="✕" HorizontalAlignment="Right" Width="40"
+                    Background="Transparent" Foreground="White" BorderThickness="0" Click="Close_Click"/>
+		</Grid>
+
+		<StackPanel Grid.Row="1">
+			<Label Content="{DynamicResource m_Username}" Foreground="{DynamicResource MainText}"/>
+			<TextBox x:Name="txtUserName" Margin="0,5,0,15"/>
+
+			<Label Content="{DynamicResource m_Email}" Foreground="{DynamicResource MainText}"/>
+			<TextBox x:Name="txtEmail" Margin="0,5,0,20"/>
+
+			<Label Content="{DynamicResource m_Theme}" Foreground="{DynamicResource MainText}"/>
+			<ComboBox x:Name="cmbThemes" Margin="0,5,0,15" SelectionChanged="CmbThemes_SelectionChanged" Style="{StaticResource PubgComboBoxStyle}">
+				<ComboBoxItem Content="Dark" Tag="Dark"/>
+				<ComboBoxItem Content="Gray" Tag="Gray"/>
+				<ComboBoxItem Content="Orange" Tag="Orange"/>
+			</ComboBox>
+
+			<Label Content="{DynamicResource m_Language}" Foreground="{DynamicResource MainText}"/>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,20">
+				<RadioButton x:Name="rbRu" Content="Русский" Foreground="White" IsChecked="True" Margin="0,0,20,0" Click="Lang_Click" Tag="ru"/>
+				<RadioButton x:Name="rbEn" Content="English" Foreground="White" Click="Lang_Click" Tag="en"/>
+			</StackPanel>
+
+			<Button Content="{DynamicResource m_Save}" Style="{StaticResource PubgButtonStyle}"
+                    Height="40" Click="Save_Click" Margin="0,10,0,0"/>
+		</StackPanel>
+	</Grid>
+</Window>

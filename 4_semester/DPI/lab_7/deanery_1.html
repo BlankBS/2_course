@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Dean Portal: Academic System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px;
+            padding-bottom: 80px;
+        }
+
+        header {
+            padding: 20px 16px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title { font-size: 20px; font-weight: 800; }
+        .profile-mini { display: flex; align-items: center; gap: 8px; font-size: 11px; text-align: right; }
+        .avatar { width: 30px; height: 30px; background: #EEE; border-radius: 50%; }
+
+        /* Поиск */
+        .search-container { padding: 0 16px 20px; }
+        .search-bar {
+            width: 100%;
+            height: 44px;
+            background: #F5F5F5;
+            border: 1px solid #EEE;
+            border-radius: 10px;
+            padding: 0 16px;
+            box-sizing: border-box;
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Статистика 2x2 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #FAFAFA;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 14px;
+        }
+        .stat-label { font-size: 9px; color: #AAA; text-transform: uppercase; font-weight: 700; display: block; }
+        .stat-val { font-size: 20px; font-weight: 800; margin-top: 4px; display: block; }
+
+        /* Очередь документов */
+        .section-container { padding: 0 16px; }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .section-title { font-size: 15px; font-weight: 700; }
+        .link-all { font-size: 11px; color: #666; text-decoration: underline; }
+
+        .doc-card {
+            background: #FFF;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+        }
+        .student-name { font-size: 14px; font-weight: 700; display: block; margin-bottom: 4px; }
+        .doc-type { font-size: 12px; color: #666; }
+        .doc-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+        .doc-date { font-size: 11px; color: #AAA; }
+
+        /* Бейджи статусов */
+        .badge { padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+        .badge-red { background: #FFDADA; color: #C00; }
+        .badge-orange { background: #FFEBD6; color: #D66E00; }
+
+        /* Аналитика (Проблемные группы) */
+        .analytics-card {
+            background: #FAFAFA;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 10px;
+        }
+        .analytics-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        /* Таб бар */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .tab-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #999; }
+        .tab-active { color: #000; font-weight: 700; }
+        .tab-icon { width: 22px; height: 22px; background: #EEE; border-radius: 5px; margin-bottom: 4px; }
+        .tab-active .tab-icon { background: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="page-title">Портал Деканата</div>
+        <div class="profile-mini">
+            <div><b>Шиман Д. В.</b><br>Декан ФИТ</div>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-bar">Поиск студента по ФИО...</div>
+    </div>
+
+    <!-- Статистика -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Успеваемость</span>
+            <span class="stat-val">4.2</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Студентов</span>
+            <span class="stat-val">1,240</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Новых заявок</span>
+            <span class="stat-val">14</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Ведомостей</span>
+            <span class="stat-val">8</span>
+        </div>
+    </div>
+
+    <!-- Очередь документов -->
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-title">Очередь обработки</span>
+            <span class="link-all">Все заявки</span>
+        </div>
+
+        <div class="doc-card">
+            <span class="student-name">Волков Максим (22-Т-104)</span>
+            <span class="doc-type">Справка об обучении</span>
+            <div class="doc-meta">
+                <span class="doc-date">Сегодня, 10:15</span>
+                <span class="badge badge-red">Не обрабатывается</span>
+            </div>
+        </div>
+
+        <div class="doc-card">
+            <span class="student-name">Николаева А.Д. (21-Э-302)</span>
+            <span class="doc-type">Архивная выписка</span>
+            <div class="doc-meta">
+                <span class="doc-date">Вчера, 16:40</span>
+                <span class="badge badge-orange">В обработке</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Аналитика -->
+    <div class="section-container" style="margin-top: 20px;">
+        <span class="section-title">Аналитика факультета</span>
+        <div class="analytics-card">
+            <div style="font-size: 10px; color: #AAA; margin-bottom: 8px; font-weight: 700;">ПРОБЛЕМНЫЕ ГРУППЫ</div>
+            <div class="analytics-item"><span>Группа 2-9</span> <b>5 должников</b></div>
+            <div class="analytics-item" style="border-top: 1px solid #EEE; padding-top: 12px;"><span>Группа 1-7</span> <b>3 должника</b></div>
+        </div>
+    </div>
+
+    <nav class="tab-bar">
+        <div class="tab-item tab-active"><div class="tab-icon"></div>Главная</div>
+        <div class="tab-item"><div class="tab-icon"></div>Группы</div>
+        <div class="tab-item"><div class="tab-icon"></div>Заявки</div>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Dashboard: Academic System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            width: 375px; /* Ширина мобильного экрана */
+            padding-bottom: 80px; /* Место для нижнего меню */
+            overflow-x: hidden;
+        }
+
+        /* Хедер с профилем */
+        header {
+            padding: 20px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            background: #E0E0E0;
+            border-radius: 50%;
+        }
+
+        /* Главная карточка (Ближайшая пара) */
+        .hero-card {
+            background: #2C2C2C;
+            margin: 0 16px 24px;
+            padding: 20px;
+            border-radius: 16px;
+            color: #FFFFFF;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 8px 0;
+            line-height: 1.2;
+        }
+
+        /* Секции (Карточки) */
+        .section-card {
+            margin: 0 16px 16px;
+            padding: 20px;
+            border: 1px solid #F0F0F0;
+            border-radius: 12px;
+            background: #FAFAFA;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .btn-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-decoration: underline;
+        }
+
+        /* Элементы списков */
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #EEE;
+            font-size: 13px;
+        }
+
+        .list-item:last-child { border: none; }
+
+        .tag {
+            background: #EEE;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        /* Нижнее меню */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            width: 375px;
+            height: 65px;
+            background: #FFF;
+            border-top: 1px solid #EEE;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #999;
+        }
+
+        .tab-active { color: #000; font-weight: 700; }
+
+        .tab-icon {
+            width: 24px;
+            height: 24px;
+            background: #EEE;
+            border-radius: 6px;
+            margin-bottom: 4px;
+        }
+        
+        .tab-active .tab-icon { background: #000; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-size: 18px; font-weight: 800;">Обзор обучения</div>
+        <div class="user-profile">
+            <div style="text-align: right; font-size: 12px;">
+                <b>Сикорский А. А.</b><br><span style="color:#999">Гр. 2-8</span>
+            </div>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <!-- Ближайшая пара -->
+    <div class="hero-card">
+        <div class="hero-label">Через 15 минут</div>
+        <div class="hero-title">Дизайн пользовательских интерфейсов</div>
+        <div style="font-size: 13px; opacity: 0.8;">Каб. 308-1 • Преп: Уласевич Н. И.</div>
+    </div>
+
+    <!-- Расписание -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">Расписание на сегодня</div>
+            <div class="btn-link">Весь календарь</div>
+        </div>
+        <div class="list-item"><span>14:40 - 16:05</span> <b>ДПИ</b></div>
+        <div class="list-item"><span>16:25 - 17:50</span> <b>Основы права</b></div>
+        <div class="list-item"><span>18:00 - 19:25</span> <b>ООП</b></div>
+    </div>
+
+    <!-- Справки -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">Заявки на справки</div>
+            <div class="btn-link">Заказать</div>
+        </div>
+        <div class="list-item">
+            <div>№442 • Справка об обучении</div>
+            <span class="tag">В ОБРАБОТКЕ</span>
+        </div>
+    </div>
+
+    <!-- Оценки -->
+    <div class="section-card">
+        <div class="section-header">
+            <div class="section-title">Последние отметки</div>
+        </div>
+        <div class="list-item"><span>Философия</span> <b>8</b></div>
+        <div class="list-item"><span>ДПИ</span> <b>9</b></div>
+    </div>
+
+    <!-- Нижняя навигация -->
+    <div class="tab-bar">
+        <div class="tab-item tab-active">
+            <div class="tab-icon"></div>
+            Главная
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"></div>
+            Расписание
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"></div>
+            Успеваемость
+        </div>
+    </div>
+
+</body>
+</html>

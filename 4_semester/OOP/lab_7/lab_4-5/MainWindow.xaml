@@ -1,0 +1,190 @@
+﻿<Window x:Class="lab_4_5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:lab_4_5.ViewModels"
+        xmlns:controls="clr-namespace:lab_4_5.Controls"
+        xmlns:conv="clr-namespace:lab_4_5.Converters"
+        Title="PUBG Skin Market" Height="700" Width="1150"
+        Icon="pack://application:,,,/Resources/Icons/app.ico" 
+        AllowDrop="True" Drop="Image_Drop"
+        WindowStyle="None" 
+        WindowStartupLocation="CenterScreen"
+        MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}" >
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static controls:PubgCommands.ResetFilters}" Executed="ResetFilters_Executed" />
+    </Window.CommandBindings>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:ByteToImageConverter x:Key="ByteToImg"/>
+
+        <!-- Стили шапки окна -->
+        <Style x:Key="CaptionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#444444"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+
+    <Grid Background="{DynamicResource PrimaryBG}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ШАПКА (ЗАГОЛОВОК) -->
+        <Grid Grid.Row="0" Background="#2D2D2D">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0">
+                <Image Source="pack://application:,,,/Resources/Icons/app.ico" Width="20" Height="20" Margin="0,0,10,0"/>
+                <TextBlock Text="PUBG SKIN MARKET" Foreground="{DynamicResource AccentColor}" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True">
+                <!-- КНОПКИ UNDO/REDO -->
+                <Button Content="↩" Command="{Binding UndoCommand}" ToolTip="{DynamicResource m_Undo}" Style="{StaticResource CaptionButtonStyle}"/>
+                <Button Content="↪" Command="{Binding RedoCommand}" ToolTip="{DynamicResource m_Redo}" Style="{StaticResource CaptionButtonStyle}"/>
+
+                <Button Content="—" Click="MinimizeWin" Style="{StaticResource CaptionButtonStyle}"/>
+                <Button Content="☐" Click="MaximizeWin" Style="{StaticResource CaptionButtonStyle}"/>
+                <Button Content="✕" Click="CloseWin"    Style="{StaticResource CloseButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ОСНОВНАЯ ЧАСТЬ -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <!-- Левая панель -->
+                <ColumnDefinition Width="*"/>
+                <!-- Правая панель (была пустой) -->
+            </Grid.ColumnDefinitions>
+
+            <!-- ЛЕВАЯ ПАНЕЛЬ -->
+            <Border Grid.Column="0" Background="#2D2D2D" Margin="10" CornerRadius="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <!-- Фильтры -->
+                        <RowDefinition Height="*"/>
+                        <!-- КОРЗИНА -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Языки -->
+                    </Grid.RowDefinitions>
+
+                    <!-- Блок фильтров -->
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="PUBG MARKET" Foreground="{DynamicResource AccentColor}" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <Button Content="{DynamicResource m_Profile}" Click="OpenProfile_Click" Style="{StaticResource PubgButtonStyle}" Margin="0,0,0,10"/>
+                        <CheckBox Content="{DynamicResource m_Admin}" IsChecked="{Binding IsAdmin}" Foreground="{DynamicResource MainText}" Margin="0,0,0,10"/>
+
+                        <Label Content="{DynamicResource m_Search}" Foreground="{DynamicResource MainText}"/>
+                        <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+
+                        <Slider Minimum="0" Maximum="1000" Value="{Binding MaxPrice, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Foreground="{DynamicResource AccentColor}" HorizontalAlignment="Right" Margin="0,0,0,10">
+                    <Run Text="{DynamicResource m_PriceTo}"/> <Run Text="{Binding MaxPrice, StringFormat={}{0:F0}}"/> $
+                        </TextBlock>
+
+                        <Button Command="{x:Static controls:PubgCommands.ResetFilters}" Content="RESET (Ctrl+R)" Style="{StaticResource PubgButtonStyle}"/>
+                        <Button Content="{DynamicResource m_Add}" Command="{Binding AddCommand}" Style="{StaticResource PubgButtonStyle}" 
+                        Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVis}}" Margin="0,10,0,0"/>
+                    </StackPanel>
+
+                    <!-- КОРЗИНА (Исправлено растягивание кнопки) -->
+                    <GroupBox Grid.Row="1" Header="{DynamicResource m_Basket}" Margin="10" Foreground="{DynamicResource AccentColor}">
+                        <DockPanel LastChildFill="True">
+                            <!-- ListBox заполнит центр, кнопка будет снизу -->
+                            <Button DockPanel.Dock="Bottom" Content="{DynamicResource m_Checkout}" 
+                            Command="{Binding CheckoutCommand}" Style="{StaticResource CheckoutButtonStyle}" 
+                            Height="35" Margin="0,5,0,0"/>
+
+                            <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="5">
+                        <Run Text="{DynamicResource m_Total}"/> <Run Text="{Binding CartTotal}"/> $
+                            </TextBlock>
+
+                            <ListBox ItemsSource="{Binding CartItems}" Background="Transparent" BorderThickness="0" 
+                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <DockPanel Width="180">
+                                            <Button DockPanel.Dock="Right" Content="×" Command="{Binding DataContext.RemoveFromCartCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" Foreground="Red" Background="Transparent" BorderThickness="0"/>
+                                            <TextBlock Text="{Binding ShortName}" Foreground="White" TextTrimming="CharacterEllipsis"/>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+
+                    <!-- ЯЗЫКИ -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <Button Content="RU" Click="ChangeLang" Tag="ru" Width="45" Height="25" Margin="5"/>
+                        <Button Content="EN" Click="ChangeLang" Tag="en" Width="45" Height="25" Margin="5"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ПРАВАЯ ПАНЕЛЬ (Теперь она видна!) -->
+            <Grid Grid.Column="1" Margin="10">
+                <TabControl Background="Transparent" BorderThickness="0">
+                    <TabItem Header="МАГАЗИН" Foreground="Black">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                            <ItemsControl ItemsSource="{Binding FilteredSkins}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:SkinCard Width="230" Margin="5"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <TabItem Header="БАЗА ДАННЫХ" Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVis}}" Foreground="{DynamicResource AccentColor}">
+                        <DataGrid ItemsSource="{Binding FilteredSkins}" AutoGenerateColumns="False" Background="#1A1A1A" Foreground="White">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding ShortName}" Width="*"/>
+                                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
+                                <DataGridTemplateColumn Header="Фото">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding ImageBytes, Converter={StaticResource ByteToImg}}" Height="30"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
